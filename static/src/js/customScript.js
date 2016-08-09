@@ -42,4 +42,18 @@ $(document).ready(function(){
             .next("ul.nav").slideUp(200);
     });
 });
-
+//侧栏收缩按钮
+$(document).ready(function(){
+    var $btn=$("<div class='btn_hid'></div>");
+    $btn.click(function(){
+        if(this.className=="btn_hid"){
+            var width=$(this).parent().css("width");
+            $(this).parent().animate({"margin-left":"-"+width},200);
+            this.className="btn_show";
+        }else{
+            $(this).parent().animate({"margin-left":"0px"},200);
+            this.className="btn_hid";
+        }
+    });
+    $(".openerp .oe_leftbar > div").append($btn);
+});

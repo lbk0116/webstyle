@@ -49,7 +49,7 @@ body{
         li>a:hover,li>button:hover{
             color: @mianColor;
         }
-        li.active a,li.active button,li.open>a{
+        li.active>a,li.active>button,li.open>a{
             color: @mianColor;
         }
     }
@@ -82,6 +82,32 @@ body .openerp .oe_searchview {
                 ul.nav>li a{
                     padding:6px 4px 2px 45px;
                 }
+            }
+        }
+    }
+    //侧栏收缩按钮
+    .oe_leftbar > div{
+        .btn_hid{
+            cursor: pointer;
+            position: absolute;
+            top:50%;right:0px;
+            width:0px;height:0px;
+            border:14px solid transparent;
+            border-right-color: #ddd;
+            &:hover{
+                border-right-color: @mianColorLight;
+            }
+        }
+        .btn_show{
+            cursor: pointer;
+            position: absolute;
+            z-index: 500;
+            top:50%;right:-28px;
+            width:0px;height:0px;
+            border:14px solid transparent;
+            border-left-color: #ddd;
+            &:hover{
+                border-left-color: @mianColorLight;
             }
         }
     }

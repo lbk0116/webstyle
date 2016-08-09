@@ -36,8 +36,8 @@ body #oe_main_menu_navbar .nav li > a:hover,
 body #oe_main_menu_navbar .nav li > button:hover {
   color: #d67911;
 }
-body #oe_main_menu_navbar .nav li.active a,
-body #oe_main_menu_navbar .nav li.active button,
+body #oe_main_menu_navbar .nav li.active > a,
+body #oe_main_menu_navbar .nav li.active > button,
 body #oe_main_menu_navbar .nav li.open > a {
   color: #d67911;
 }
@@ -66,6 +66,33 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   .openerp td.oe_leftbar > div ul.nav > li a {
     padding: 6px 4px 2px 45px;
   }
+}
+.openerp .oe_leftbar > div .btn_hid {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  width: 0px;
+  height: 0px;
+  border: 14px solid transparent;
+  border-right-color: #ddd;
+}
+.openerp .oe_leftbar > div .btn_hid:hover {
+  border-right-color: #ff9c21;
+}
+.openerp .oe_leftbar > div .btn_show {
+  cursor: pointer;
+  position: absolute;
+  z-index: 500;
+  top: 50%;
+  right: -28px;
+  width: 0px;
+  height: 0px;
+  border: 14px solid transparent;
+  border-left-color: #ddd;
+}
+.openerp .oe_leftbar > div .btn_show:hover {
+  border-left-color: #ff9c21;
 }
 .openerp td.oe_leftbar {
   background-color: #fff;
