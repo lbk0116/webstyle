@@ -1,0 +1,159 @@
+/* This css contains the styling specific to the 'normal mode'. (as opposite to the embedded mode) */
+/* In embedded mode [1], this stylesheet won't be loaded. */
+
+/* [1] The web client features an embedded mode in which the webclient */
+/*     or a part of it can be started in any element of any webpage host. */
+//顶部导航栏样式定制
+//定义主题颜色
+@mianColor:#D67911;
+@mianColorLight:#ff9c21;
+//定义默认字体颜色
+@fontColor9:#999;
+@fontColor4:#444;
+@hoverFontColor:@mianColorLight;
+@activeFontColor:@fontColor4;
+
+body{
+    nav.navbar{
+        background-color: #F7F7F7;
+        border:none;
+        box-shadow: rgb(90, 90, 90) 0px 1px 3px 0px;
+        .navbar-header{
+            .navbar-toggle{
+                border:none;
+                background-color: #F7F7F7;
+                &:hover span{
+                    background-color: @mianColor;
+                }
+                &:focus span{
+                    background-color: @mianColor;
+                }
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        nav.navbar {
+            background-color: #444;
+        }
+    }
+    #oe_main_menu_navbar .nav{
+        li>a,li>button{
+            color: #fff;
+            font-size: 14px ;
+            font-weight: bold;
+            font-family: Helvetica,Arial,Microsoft Yahei,"微软雅黑",STXihei,"华文细黑",sans-serif;
+            background-color: #444;
+            margin-top:0px;
+            padding:12px 8px;
+        }
+        li>a:hover,li>button:hover{
+            color: @mianColor;
+        }
+        li.active a,li.active button,li.open>a{
+            color: @mianColor;
+        }
+    }
+}
+//页面搜索框的样式定制
+body .openerp .oe_searchview {
+    .oe_searchview_clear{
+        right: 76px;
+    }
+    .oe_searchview_unfold_drawer{
+        padding:3px 20px 0 4px;
+        &::after{
+            content: "高级搜索";
+            color:@fontColor9;
+            font-weight: bold;
+        }
+    }
+}
+//二级菜单的样式
+.openerp {
+    @media (min-width: 768px) {
+         td.oe_leftbar{
+            background-color: #fff;
+            width: 270px;
+            >div{
+                width:270px;
+                .oe_secondary_menu_section{
+                    padding-left: 30px;
+                }
+                ul.nav>li a{
+                    padding:6px 4px 2px 45px;
+                }
+            }
+        }
+    }
+    td.oe_leftbar{
+        background-color: #fff;
+    }
+    .oe_secondary_menu{
+        .nav-pills li > a{
+            font-size: 14px;
+            >span{
+                border: 1px solid transparent;
+                padding-top:2px;
+                font-size: 1.1em;
+            }
+        }
+        .nav-pills li:hover > a{
+            background-color: #fff;
+            >span{
+                color:@hoverFontColor;
+                border-bottom: 1px solid @mianColorLight;
+            }
+        }
+        .nav-pills li.active:hover >a{
+            background-color: #fff;
+            >span{
+                color:@hoverFontColor;
+            }
+        }
+        .nav-pills li.active> a{
+            background-color: #fff;
+            >span{
+                color:@activeFontColor;
+                font-weight: bold;
+                border-bottom: 1px solid transparent;
+                &::before{
+                    content: "";
+                    display: inline-block;
+                    height: 1.3em;  width:3px;
+                    position: absolute;
+                    z-index: 500;
+                    top:6px;left:10px;
+                    @media (min-width: 768px) {
+                        top:6px;left:31px;
+                    }
+                    background-color: @mianColorLight;
+                }
+            }
+        }
+        .oe_secondary_menu_section{
+            cursor: pointer;
+            margin-left: 0px;
+            padding:8px;
+            color:@fontColor9;
+            font-size:1.1em;
+            &::before{
+                content: "";
+                display: inline-block;
+                width:12px;height:12px;
+                position: relative;
+                top:1px;
+                background: url("../img/show.png") no-repeat;
+            }
+        }
+        .oe_secondary_menu_section.show{
+            &::before{
+                content: "";
+                display: inline-block;
+                width:12px;height:12px;
+                position: relative;
+                top:1px;
+                background: url("../img/hidden.png") no-repeat;
+            }
+        }
+    }
+}

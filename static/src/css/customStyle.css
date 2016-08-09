@@ -1,0 +1,143 @@
+/* This css contains the styling specific to the 'normal mode'. (as opposite to the embedded mode) */
+/* In embedded mode [1], this stylesheet won't be loaded. */
+/* [1] The web client features an embedded mode in which the webclient */
+/*     or a part of it can be started in any element of any webpage host. */
+body nav.navbar {
+  background-color: #F7F7F7;
+  border: none;
+  box-shadow: #5a5a5a 0px 1px 3px 0px;
+}
+body nav.navbar .navbar-header .navbar-toggle {
+  border: none;
+  background-color: #F7F7F7;
+}
+body nav.navbar .navbar-header .navbar-toggle:hover span {
+  background-color: #d67911;
+}
+body nav.navbar .navbar-header .navbar-toggle:focus span {
+  background-color: #d67911;
+}
+@media (min-width: 768px) {
+  body nav.navbar {
+    background-color: #444;
+  }
+}
+body #oe_main_menu_navbar .nav li > a,
+body #oe_main_menu_navbar .nav li > button {
+  color: #fff;
+  font-size: 14px ;
+  font-weight: bold;
+  font-family: Helvetica, Arial, Microsoft Yahei, "微软雅黑", STXihei, "华文细黑", sans-serif;
+  background-color: #444;
+  margin-top: 0px;
+  padding: 12px 8px;
+}
+body #oe_main_menu_navbar .nav li > a:hover,
+body #oe_main_menu_navbar .nav li > button:hover {
+  color: #d67911;
+}
+body #oe_main_menu_navbar .nav li.active a,
+body #oe_main_menu_navbar .nav li.active button,
+body #oe_main_menu_navbar .nav li.open > a {
+  color: #d67911;
+}
+body .openerp .oe_searchview .oe_searchview_clear {
+  right: 76px;
+}
+body .openerp .oe_searchview .oe_searchview_unfold_drawer {
+  padding: 3px 20px 0 4px;
+}
+body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
+  content: "高级搜索";
+  color: #999999;
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  .openerp td.oe_leftbar {
+    background-color: #fff;
+    width: 270px;
+  }
+  .openerp td.oe_leftbar > div {
+    width: 270px;
+  }
+  .openerp td.oe_leftbar > div .oe_secondary_menu_section {
+    padding-left: 30px;
+  }
+  .openerp td.oe_leftbar > div ul.nav > li a {
+    padding: 6px 4px 2px 45px;
+  }
+}
+.openerp td.oe_leftbar {
+  background-color: #fff;
+}
+.openerp .oe_secondary_menu .nav-pills li > a {
+  font-size: 14px;
+}
+.openerp .oe_secondary_menu .nav-pills li > a > span {
+  border: 1px solid transparent;
+  padding-top: 2px;
+  font-size: 1.1em;
+}
+.openerp .oe_secondary_menu .nav-pills li:hover > a {
+  background-color: #fff;
+}
+.openerp .oe_secondary_menu .nav-pills li:hover > a > span {
+  color: #ff9c21;
+  border-bottom: 1px solid #ff9c21;
+}
+.openerp .oe_secondary_menu .nav-pills li.active:hover > a {
+  background-color: #fff;
+}
+.openerp .oe_secondary_menu .nav-pills li.active:hover > a > span {
+  color: #ff9c21;
+}
+.openerp .oe_secondary_menu .nav-pills li.active > a {
+  background-color: #fff;
+}
+.openerp .oe_secondary_menu .nav-pills li.active > a > span {
+  color: #444444;
+  font-weight: bold;
+  border-bottom: 1px solid transparent;
+}
+.openerp .oe_secondary_menu .nav-pills li.active > a > span::before {
+  content: "";
+  display: inline-block;
+  height: 1.3em;
+  width: 3px;
+  position: absolute;
+  z-index: 500;
+  top: 6px;
+  left: 10px;
+  background-color: #ff9c21;
+}
+@media (min-width: 768px) {
+  .openerp .oe_secondary_menu .nav-pills li.active > a > span::before {
+    top: 6px;
+    left: 31px;
+  }
+}
+.openerp .oe_secondary_menu .oe_secondary_menu_section {
+  cursor: pointer;
+  margin-left: 0px;
+  padding: 8px;
+  color: #999999;
+  font-size: 1.1em;
+}
+.openerp .oe_secondary_menu .oe_secondary_menu_section::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: 1px;
+  background: url("../img/show.png") no-repeat;
+}
+.openerp .oe_secondary_menu .oe_secondary_menu_section.show::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: 1px;
+  background: url("../img/hidden.png") no-repeat;
+}

@@ -1,0 +1,10 @@
+<openerp>
+    <data>
+        <template id="idname" name="stock assets" inherit_id="web.assets_common">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/webstyle/static/src/css/customStyle.css" />
+                <script type="text/javascript" src="/webstyle/static/src/js/customScript.js"></script>
+            </xpath>
+        </template>
+     </data>
+</openerp>
