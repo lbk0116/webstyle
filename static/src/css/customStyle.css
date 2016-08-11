@@ -168,3 +168,43 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   top: 1px;
   background: url("../img/hidden.png") no-repeat;
 }
+.oe_searchview_drawer .col-md-12 {
+  margin-top: 18px;
+}
+.oe_searchview_drawer .col-md-12 ul {
+  list-style: none;
+  overflow: hidden;
+}
+.oe_searchview_drawer .col-md-12 ul li {
+  float: left;
+}
+.oe_searchview_drawer .col-md-12 ul li:first-child {
+  width: 80px;
+  text-align: right;
+}
+.oe_searchview_drawer .col-md-12 ul li a {
+  padding: 4px 20px;
+  color: #666;
+}
+.oe_searchview_drawer .col-md-12 ul li a:hover {
+  background-color: #f0f0fa;
+}
+.oe_searchview_drawer .col-md-12 ul li.active > a {
+  background-color: #d67911;
+  border-radius: 42%;
+  color: #fff;
+}
+div.fixedHead {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 30px;
+}
+div.fixedHead table {
+  width: 100%;
+}
+div.fixedHead table th {
+  box-sizing: border-box;
+  padding: 3px 6px;
+}

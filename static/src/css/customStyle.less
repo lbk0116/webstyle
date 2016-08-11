@@ -183,3 +183,47 @@ body .openerp .oe_searchview {
         }
     }
 }
+//人力资源添加默认字段搜索
+.oe_searchview_drawer{
+    .col-md-12{
+        margin-top:18px;
+        ul{
+            list-style: none;
+            overflow: hidden;
+            li{
+                float: left;
+                &:first-child{
+                    width:80px;
+                    text-align: right;
+                }
+                a{
+                    padding:4px 20px;
+                    color:#666;
+                    &:hover{
+                        background-color: #f0f0fa;
+                    }
+                }
+            }
+            li.active>a{
+                background-color: @mianColor;
+                border-radius: 42%;
+                color:#fff;
+            }
+        }
+    }
+}
+
+//固定表头脚本
+div.fixedHead{
+    position: absolute;
+    top:0px;left: 0px;right: 0px;
+    height:30px;
+    table{
+        width:100%;
+        th{
+            box-sizing: border-box;
+            padding:3px 6px;
+        }
+    }
+}
+
