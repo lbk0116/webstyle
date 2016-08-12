@@ -97,73 +97,59 @@ $(document).ready(function(){
                      }
                  });
              }
+             var tag=$(this).parents("ul[data-tag]").attr("data-tag");
+             var value=$(this).attr("href");
              var liActive=$(this).parent().attr("class");
              if(liActive){
                  $(this).parent().removeClass("active");
-                 var tag=$(this).parents("ul[data-tag]").attr("data-tag");
+                 tag+="_"+value;
                  removeSelect(indexObj[tag]);
                  indexObj[tag]=undefined;
              }else{
-                 $(this).parent("li").addClass("active").siblings("li").removeClass("active");
-                 var tag=$(this).parents("ul[data-tag]").attr("data-tag");
-                 // $("form .searchview_extended_prop_field").append($("<option value='"+tag+"'>"+tag+"</option>"));
+                 $(this).parent("li").addClass("active");
                  $("form .searchview_extended_prop_field").val(tag);
                  $("form .searchview_extended_prop_field").trigger("change");
                  if(tag==="level"){
-                     if(indexObj.level){
-                         removeSelect(indexObj.level);
-                     }
                      $("form .searchview_extended_prop_op").val("=");
-                     var level=$(this).attr("href");
-                     $("form .searchview_extended_prop_value>select").val(level);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.level=divNum-2;
-                 }else if(tag==="certificate_institutions_id"){
-                    if(indexObj.certificate_institutions_id){
-                        removeSelect(indexObj.certificate_institutions_id);
-                    }
-                     $("form .searchview_extended_prop_op").val("ilike");
-                     var value=$(this).attr("href");
-                     $("form .searchview_extended_prop_value>input.field_char").val(value);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.certificate_institutions_id=divNum-2;
-                 }else if(tag==="category"){
-                    if(indexObj.category){
-                        removeSelect(indexObj.category);
-                    }
-                     $("form .searchview_extended_prop_op").val("=");
-                     var value=$(this).attr("href");
                      $("form .searchview_extended_prop_value>select").val(value);
                      $("form button.oe_apply:first").trigger("submit");
                      var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.category=divNum-2;
-                 }else if(tag==="project_id"){
-                    if(indexObj.project_id){
-                        removeSelect(indexObj.project_id);
-                    }
+                     tag+="_"+value;
+                     indexObj[tag]=divNum-2;
+                 }else if(tag==="certificate_institutions_id"){
                      $("form .searchview_extended_prop_op").val("ilike");
-                     var value=$(this).attr("href");
                      $("form .searchview_extended_prop_value>input.field_char").val(value);
                      $("form button.oe_apply:first").trigger("submit");
                      var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.project_id=divNum-2;
-                 }else if(tag==="work_age"){
-                    if(indexObj.work_age){
-                        removeSelect(indexObj.work_age);
-                    }
+                     tag+="_"+value;
+                     indexObj[tag]=divNum-2;
+                 }else if(tag==="category"){
                      $("form .searchview_extended_prop_op").val("=");
-                     var value=$(this).attr("href");
+                     $("form .searchview_extended_prop_value>select").val(value);
+                     $("form button.oe_apply:first").trigger("submit");
+                     var divNum=$(".oe_searchview_facets div").length;
+                     tag+="_"+value;
+                     indexObj[tag]=divNum-2;
+                 }else if(tag==="project_id"){
+                     $("form .searchview_extended_prop_op").val("ilike");
+                     $("form .searchview_extended_prop_value>input.field_char").val(value);
+                     $("form button.oe_apply:first").trigger("submit");
+                     var divNum=$(".oe_searchview_facets div").length;
+                     tag+="_"+value;
+                     indexObj[tag]=divNum-2;
+                 }else if(tag==="work_age"){
+                     $("form .searchview_extended_prop_op").val("=");
                      if(value=="7"){
                          $("form .searchview_extended_prop_op").val(">=");
                      }
                      $("form .searchview_extended_prop_value>input.field_integer").val(value);
                      $("form button.oe_apply:first").trigger("submit");
                      var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.work_age=divNum-2;
+                     tag+="_"+value;
+                     indexObj[tag]=divNum-2;
                  }
              }
+             console.log(indexObj);
          });
          $("div.oe_searchview_clear").click(function () {
              $("div.col-md-12>ul>li").removeClass("active");
