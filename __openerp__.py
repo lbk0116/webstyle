@@ -9,7 +9,7 @@
         Long description of module's purpose
     """,
 
-    'author': "Wang Haipeng",
+    'author': "Nantian",
     'website': "http://www.nantian.com.cn",
 
     # Categories can be used to filter modules in modules listing

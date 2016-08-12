@@ -155,14 +155,15 @@ $(document).ready(function(){
                     }
                      $("form .searchview_extended_prop_op").val("=");
                      var value=$(this).attr("href");
-                     if(value===7){$("form .searchview_extended_prop_op").val(">=");}
-                     $("form .searchview_extended_prop_value>input.field_char").val(value);
+                     if(value=="7"){
+                         $("form .searchview_extended_prop_op").val(">=");
+                     }
+                     $("form .searchview_extended_prop_value>input.field_integer").val(value);
                      $("form button.oe_apply:first").trigger("submit");
                      var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.project_id=divNum-2;
+                     indexObj.work_age=divNum-2;
                  }
              }
-             console.log(indexObj)
          });
          $("div.oe_searchview_clear").click(function () {
              $("div.col-md-12>ul>li").removeClass("active");
