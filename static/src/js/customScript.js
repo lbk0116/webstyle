@@ -59,19 +59,23 @@ $(document).ready(function(){
 });
 //人力资源添加默认字段搜索
  $(document).ready(function(){
-     setTimeout(function(){
-         var stra=$("li.active>a.oe_menu_toggler>span.oe_menu_text").html().trim();
-         if(stra==="人力资源"){
-            addSearchKey();
+     function boot(){
+         var stra=$("li.active>a.oe_menu_toggler>span.oe_menu_text").html();
+         console.log(111);
+         if(stra){
+             stra=stra.trim();
+             if(stra==="人力资源"){
+                addSearchKey();
+             }
+         }else{
+             setTimeout(boot,500);
          }
-     },2500);
-
+     }
+     setTimeout(boot,500);
      $(".oe_menu_toggler").click(function (){
          var strb=$(this).children("span.oe_menu_text").html().trim();
          if(strb==="人力资源"){
-             setTimeout(function(){
-                addSearchKey();
-             },2500)
+             setTimeout(boot,500);
          }
      });
      function addSearchKey(){
