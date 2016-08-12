@@ -59,19 +59,22 @@ $(document).ready(function(){
 });
 //人力资源添加默认字段搜索
  $(document).ready(function(){
-     setTimeout(function(){
-         var stra=$("li.active>a.oe_menu_toggler>span.oe_menu_text").html().trim();
-         if(stra==="人力资源"){
-            addSearchKey();
+     function boot(){
+         var stra=$("li.active>a.oe_menu_toggler>span.oe_menu_text").html();
+         if(stra){
+             stra=stra.trim();
+             if(stra==="人力资源"){
+                addSearchKey();
+             }
+         }else{
+             setTimeout(boot,500);
          }
-     },2500);
-
+     }
+     setTimeout(boot,500);
      $(".oe_menu_toggler").click(function (){
          var strb=$(this).children("span.oe_menu_text").html().trim();
          if(strb==="人力资源"){
-             setTimeout(function(){
-                addSearchKey();
-             },2500)
+             setTimeout(boot,500);
          }
      });
      function addSearchKey(){
@@ -171,39 +174,3 @@ $(document).ready(function(){
          });
      }
  });
-
-// //固定表头脚本
-// $(document).ready(function () {
-//     setTimeout(function () {
-//         fixedHeader();
-//         console.log($("a.oe_vm_switch_list"))
-//         $("a.oe_vm_switch_list").click(function () {
-//             fixedHeader();
-//             console.log(123)
-//         });
-//     },5000)
-//     function fixedHeader() {
-//              var n=0;//记录复选框的点击次数
-//             var $div = $("<div class='fixedHead'></div>");
-//             var $table=$("<table></table>");
-//             $table.append($("table.oe_list_content>thead").clone(true));
-//             $div.append($table);
-//             $("div.oe_view_manager_wrapper>div").append($div);
-//             $.each($("tr.oe_list_header_columns:first>th"),function (i,v) {
-//                 var width=parseInt($(v).css("width"));
-//                 console.log(width);
-//                 var cloneDate=$("tr.oe_list_header_columns:last>th")[i];
-//                 $(cloneDate).attr("width",width-12);
-//             });
-//             $(".fixedHead input.oe_list_record_selector").click(function(){
-//                 if(n===0){
-//                     n=1;
-//                     for(var i=0;i<2;i++){
-//                         $("div.oe_list input.oe_list_record_selector").trigger("click");
-//                     }
-//                 }else{
-//                     $("div.oe_list input.oe_list_record_selector").trigger("click");
-//                 }
-//             });
-//     }
-// });
