@@ -88,85 +88,77 @@ $(document).ready(function(){
          // var $div=$("<form><input type='submit' value='查询'></form>");
          $(".oe_searchview_drawer").append($div);
          var indexObj={};
+         //{"work_age":["1","2","3","4","5","6","7"],"certificate_institutions_id":["cisco","华为","华三","F5","IBM"],"level":["1","2","3","4","5","6"],"category":["在公司","在合同中","赠送","开发","其他"],"project_id":["中行","建行","农行","国开","广大","农发","信达"]}
+         function refreshData(obj,t) {
+             //开始先删除相关的已选择的选项标签
+             var tag={level:"Level",
+                 certificate_institutions_id:"证书颁发机构或行业",
+                 category:"人员所属",
+                 project_id:"Project",
+                 work_age:"Work age"};
+             $("span.oe_facet_values>span.oe_facet_value").each(function (i,span) {
+                 var html=$(span).html().trim();
+                 if(html.indexOf(tag[t])===0){
+                     $(this).parent("span").siblings("span.oe_facet_remove").trigger("click");
+                 }
+             });
+
+             //开始根据页面上勾选的选择去自动添加查询
+             var length=obj[t].length;
+             for(var i=1;i<length;i++){
+                 $('.oe_add_condition').trigger("click");
+             }
+             for(var i=0;i<length;i++){
+                 $("form li:eq("+i+") .searchview_extended_prop_field").val(t);
+                 $("form li:eq("+i+") .searchview_extended_prop_field").trigger("change");
+                 if(t==="level"){
+                     $("form li:eq("+i+") .searchview_extended_prop_op").val("=");
+                     $("form li:eq("+i+") .searchview_extended_prop_value>select").val(obj[t][i]);
+                 }else if(t==="certificate_institutions_id"){
+                     $("form li:eq("+i+") .searchview_extended_prop_op").val("ilike");
+                     $("form li:eq("+i+") .searchview_extended_prop_value>input.field_char").val(obj[t][i]);
+                 }else if(t==="category"){
+                     $("form li:eq("+i+") .searchview_extended_prop_op").val("=");
+                     $("form li:eq("+i+") .searchview_extended_prop_value>select").val(obj[t][i]);
+                 }else if(t==="project_id"){
+                     $("form li:eq("+i+") .searchview_extended_prop_op").val("ilike");
+                     $("form li:eq("+i+") .searchview_extended_prop_value>input.field_char").val(obj[t][i]);
+                 }else if(t==="work_age"){
+                     if(obj[t][i]=="7"){
+                         $("form li:eq("+i+") .searchview_extended_prop_op").val(">=");
+                     }else{
+                         $("form li:eq("+i+") .searchview_extended_prop_op").val("=");
+                     }
+                     $("form li:eq("+i+") .searchview_extended_prop_value>input.field_integer").val(obj[t][i]);
+                 }
+             }
+             if(length>0){
+                 $("form button.oe_apply:first").trigger("submit");
+             }
+         }
          $("div.col-md-12>ul>li>a").click(function(e){
              var e=e||event;
              e.preventDefault();
-             //定义删除已选项字段函数
-             function removeSelect(index) {
-                 $(".oe_searchview_facets div:eq("+index+")>span.oe_facet_remove").trigger("click");
-                 $.each(indexObj,function (i,v) {
-                     if(v>index){
-                         indexObj[i]=v-2;
-                     }
-                 });
-             }
+             var tag=$(this).parents("ul[data-tag]").attr("data-tag");
+             var value=$(this).attr("href");
              var liActive=$(this).parent().attr("class");
              if(liActive){
                  $(this).parent().removeClass("active");
-                 var tag=$(this).parents("ul[data-tag]").attr("data-tag");
-                 removeSelect(indexObj[tag]);
-                 indexObj[tag]=undefined;
+                 $.each(indexObj[tag],function (i,v) {
+                     if(v===value){
+                         indexObj[tag].splice(i,1);
+                     }
+                 })
              }else{
-                 $(this).parent("li").addClass("active").siblings("li").removeClass("active");
-                 var tag=$(this).parents("ul[data-tag]").attr("data-tag");
-                 // $("form .searchview_extended_prop_field").append($("<option value='"+tag+"'>"+tag+"</option>"));
-                 $("form .searchview_extended_prop_field").val(tag);
-                 $("form .searchview_extended_prop_field").trigger("change");
-                 if(tag==="level"){
-                     if(indexObj.level){
-                         removeSelect(indexObj.level);
-                     }
-                     $("form .searchview_extended_prop_op").val("=");
-                     var level=$(this).attr("href");
-                     $("form .searchview_extended_prop_value>select").val(level);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.level=divNum-2;
-                 }else if(tag==="certificate_institutions_id"){
-                    if(indexObj.certificate_institutions_id){
-                        removeSelect(indexObj.certificate_institutions_id);
-                    }
-                     $("form .searchview_extended_prop_op").val("ilike");
-                     var value=$(this).attr("href");
-                     $("form .searchview_extended_prop_value>input.field_char").val(value);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.certificate_institutions_id=divNum-2;
-                 }else if(tag==="category"){
-                    if(indexObj.category){
-                        removeSelect(indexObj.category);
-                    }
-                     $("form .searchview_extended_prop_op").val("=");
-                     var value=$(this).attr("href");
-                     $("form .searchview_extended_prop_value>select").val(value);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.category=divNum-2;
-                 }else if(tag==="project_id"){
-                    if(indexObj.project_id){
-                        removeSelect(indexObj.project_id);
-                    }
-                     $("form .searchview_extended_prop_op").val("ilike");
-                     var value=$(this).attr("href");
-                     $("form .searchview_extended_prop_value>input.field_char").val(value);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.project_id=divNum-2;
-                 }else if(tag==="work_age"){
-                    if(indexObj.work_age){
-                        removeSelect(indexObj.work_age);
-                    }
-                     $("form .searchview_extended_prop_op").val("=");
-                     var value=$(this).attr("href");
-                     if(value=="7"){
-                         $("form .searchview_extended_prop_op").val(">=");
-                     }
-                     $("form .searchview_extended_prop_value>input.field_integer").val(value);
-                     $("form button.oe_apply:first").trigger("submit");
-                     var divNum=$(".oe_searchview_facets div").length;
-                     indexObj.work_age=divNum-2;
+                 $(this).parent("li").addClass("active");
+                 if(!indexObj[tag]){
+                     indexObj[tag]=[];
                  }
+                 indexObj[tag].push(value);
              }
+             // console.log(JSON.stringify(indexObj));
+            refreshData(indexObj,tag);
+
          });
          $("div.oe_searchview_clear").click(function () {
              $("div.col-md-12>ul>li").removeClass("active");
