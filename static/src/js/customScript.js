@@ -1,7 +1,8 @@
 /**
  * Created by Administrator on 2016/8/1.
  */
-$(document).ready(function(){
+
+$(document).ready(function () {
     //设置body的overflow为scroll和媒体查询的meta标签
     var title=$("title").html();
     if(title!=="Homepage | localhost"){
@@ -9,30 +10,8 @@ $(document).ready(function(){
         var $meta=$('<meta name="viewport" content="width=device-width,initial-scale=1"/>');
         $("head").append($meta);
     }
-});
-//二级菜单样式的点击事件
-$(document).ready(function () {
-    //搜索中高级搜索的点击事件重定义
-    function red(){
-        setTimeout(function(){
-            var $search=$(".oe_searchview_unfold_drawer");
-            $search.click(function(e){
-                $(".oe_searchview_drawer").css({"position":"relative","top":"-140px"});
-                $(".oe_searchview_drawer").animate({"top":"0"},300);
-            });
-        },1800);
-    }
-    red();
-    $("#oe_main_menu_placeholder ul.navbar-left li a").click(function(){
-        $(".oe_secondary_menu .oe_secondary_menu_section:first-child").addClass("show");
-        $(".oe_secondary_menu .oe_secondary_menu_section:first-child")
-            .siblings(".oe_secondary_menu_section").removeClass("show")
-            .next("ul.nav").css("display","none");
-        red();
-    });
-});
-//侧栏的二级菜单的展开效果
-$(document).ready(function(){
+
+    //侧栏的二级菜单的展开效果
     var menu_node=$(".oe_secondary_menu .oe_secondary_menu_section");
     $(".oe_secondary_menu .oe_secondary_menu_section:first-child").addClass("show");
     $(".oe_secondary_menu ul.nav").css("display","none");
@@ -41,9 +20,8 @@ $(document).ready(function(){
         $(this).siblings(".oe_secondary_menu_section").removeClass("show")
             .next("ul.nav").slideUp(200);
     });
-});
-//侧栏收缩按钮
-$(document).ready(function(){
+
+    //侧栏收缩按钮
     var $btn=$("<div class='btn_hid'></div>");
     $btn.click(function(){
         if(this.className=="btn_hid"){
@@ -56,10 +34,38 @@ $(document).ready(function(){
         }
     });
     $(".openerp .oe_leftbar > div").append($btn);
+
+    //搜索中高级搜索的点击事件重定义
+    function red(){
+        var n=0;
+        var timer=setInterval(function(){
+            n++;
+            var $search=$(".oe_searchview_unfold_drawer");
+            if($search.length==1||n>120){
+                clearInterval(timer);
+                $search.click(function(e){
+                    $(".oe_searchview_drawer").css({"position":"relative","top":"-140px"});
+                    $(".oe_searchview_drawer").animate({"top":"0"},300);
+                });
+            }
+        },500);
+    }
+    red();
+    $("#oe_main_menu_placeholder ul.navbar-left li a").click(function(){
+        $(".oe_secondary_menu .oe_secondary_menu_section:first-child").addClass("show");
+        $(".oe_secondary_menu .oe_secondary_menu_section:first-child")
+            .siblings(".oe_secondary_menu_section").removeClass("show")
+            .next("ul.nav").css("display","none");
+        red();
+    });
 });
+
 //人力资源添加默认字段搜索
  $(document).ready(function(){
+     var n=0;
      function boot(){
+         n++;
+         if(n>200){return;}
          var stra=$("li.active>a.oe_menu_toggler>span.oe_menu_text").html();
          if(stra){
              stra=stra.trim();
@@ -166,3 +172,30 @@ $(document).ready(function(){
          });
      }
  });
+//滚动时固定表头（面向对象）
+$(document).ready(function () {
+    var fixTableHead={
+        init:function () {
+            var me=this
+            setTimeout(boot,500);
+            var n=0;
+            function boot() {
+                n++;
+                if(n>120){return;}
+                console.log(n);
+                if($('div.oe_view_manager_body').length==1){
+                    start();
+                }else{
+                    setTimeout(boot,500);
+                }
+            }
+            function start() {
+                $('div.oe_view_manager_body').scroll(function(){
+                    console.log(this);
+                });
+            }
+        }
+    }
+    fixTableHead.init();
+    $("#oe_main_menu_placeholder ul.navbar-left li a").click(fixTableHead.init);
+});
