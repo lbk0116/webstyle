@@ -190,7 +190,6 @@ var fixTableHead={
         function boot() {
             n++;
             if (n > 120) { return }
-            console.log(n);
             if ($('div.oe_view_manager_body').length == 1) {
                 start();
             } else {
