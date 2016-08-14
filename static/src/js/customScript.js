@@ -172,30 +172,44 @@ $(document).ready(function () {
          });
      }
  });
-//滚动时固定表头（面向对象）
+//滚动时固定表头
 $(document).ready(function () {
-    var fixTableHead={
-        init:function () {
-            var me=this
-            setTimeout(boot,500);
-            var n=0;
-            function boot() {
-                n++;
-                if(n>120){return;}
-                console.log(n);
-                if($('div.oe_view_manager_body').length==1){
-                    start();
-                }else{
-                    setTimeout(boot,500);
-                }
-            }
-            function start() {
-                $('div.oe_view_manager_body').scroll(function(){
-                    console.log(this);
-                });
+    fixTableHead.init();
+    $("#oe_main_menu_placeholder ul.navbar-left li a").click(function(){
+        fixTableHead.init();
+    });
+});
+var fixTableHead={
+    top:0,
+    startTop:0,
+    isIE:false,
+    init:function () {
+        var me = this;
+        setTimeout(boot, 500);
+        var n = 0;
+        function boot() {
+            n++;
+            if (n > 120) { return }
+            console.log(n);
+            if ($('div.oe_view_manager_body').length == 1) {
+                start();
+            } else {
+                setTimeout(boot, 500);
             }
         }
+        function start() {
+            $('div.oe_view_manager_body').scroll(function () {
+                me.startTop=$('div.oe_view_manager_body').offset().top;
+                var offset = $('.oe_view_manager_view_list').offset();
+                if(offset){
+                    me.top=me.startTop-offset.top;
+                    if(offset.top<=me.startTop){
+                        $(this).find("table.oe_list_content>thead").css("transform","translateY("+me.top+"px)");
+                    }else{
+                        $(this).find("table.oe_list_content>thead").css("transform","translateY(0px)")
+                    }
+                }
+            });
+        }
     }
-    fixTableHead.init();
-    $("#oe_main_menu_placeholder ul.navbar-left li a").click(fixTableHead.init);
-});
+}
