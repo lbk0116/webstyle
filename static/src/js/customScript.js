@@ -5,6 +5,8 @@
 $(document).ready(function () {
     //设置body的overflow为scroll和媒体查询的meta标签
     var title=$("title").html();
+    //设置页签上的icon图标
+    $("head>link[rel*=shortcut]").attr("href","/webstyle/static/src/img/favicon.ico");
     if(title!=="Homepage | localhost"){
         $("body").css("overflow","auto");
         var $meta=$('<meta name="viewport" content="width=device-width,initial-scale=1"/>');
