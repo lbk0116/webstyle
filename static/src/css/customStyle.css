@@ -194,3 +194,8 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   border-radius: 42%;
   color: #fff;
 }
+.navbar span.oe_topbar_name {
+  line-height: 15px;
+  position: relative;
+  top: 3px;
+}

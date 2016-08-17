@@ -91,7 +91,7 @@ $(document).ready(function () {
                  '<ul data-tag="certificate_institutions_id"><li>证书：</li><li><a href="cisco">Cisco</a></li><li><a href="华为">华为</a></li><li><a href="华三">华三</a></li><li><a href="F5">F5</a></li><li><a href="IBM">IBM</a></li></ul>'+
                  '<ul data-tag="level"><li>级别：</li><li><a href="1">1级</a></li><li><a href="2">2级</a></li><li><a href="3">3级</a></li><li><a href="4">4级</a></li><li><a href="5">5级</a></li><li><a href="6">6级</a></li></ul>'+
                  '<ul data-tag="category"><li>人员归属：</li><li><a href="在公司">在公司</a></li><li><a href="在合同中">在合同中</a></li><li><a href="赠送">赠送</a></li><li><a href="开发">开发</a></li><li><a href="其他">其他</a></li></ul>'+
-                 '<ul data-tag="project_id"><li>客户：</li><li><a href="中行">中行</a></li><li><a href="建行">建行</a></li><li><a href="农行">农行</a></li><li><a href="国开">国开</a></li><li><a href="广大">广大</a></li><li><a href="农发">农发</a></li><li><a href="信达">信达</a></li></ul>'+
+                 '<ul data-tag="project_id"><li>客户：</li><li><a href="中行">中行</a></li><li><a href="建行">建行</a></li><li><a href="农行">农行</a></li><li><a href="国开">国开</a></li><li><a href="光大">光大</a></li><li><a href="农发">农发</a></li><li><a href="信达">信达</a></li></ul>'+
              '</div>');
          // var $div=$("<form><input type='submit' value='查询'></form>");
          $(".oe_searchview_drawer").append($div);
@@ -181,6 +181,9 @@ $(document).ready(function () {
     $("#oe_main_menu_placeholder ul.navbar-left li a").click(function(){
         fixTableHead.init();
     });
+    $("div.oe_secondary_menus_container ul.oe_secondary_submenu>li>a").click(function () {
+        fixTableHead.init();
+    });
 });
 var fixTableHead={
     top:0,
@@ -192,7 +195,7 @@ var fixTableHead={
         var n = 0;
         function boot() {
             n++;
-            if (n > 120) { return }
+            if (n > 240) { return }
             if ($('div.oe_view_manager_body').length == 1) {
                 start();
             } else {
@@ -200,15 +203,15 @@ var fixTableHead={
             }
         }
         function start() {
-            $('div.oe_view_manager_body').scroll(function () {
+            $('div.oe_view_manager_body:first').scroll(function () {
                 me.startTop=$('div.oe_view_manager_body').offset().top;
                 var offset = $('.oe_view_manager_view_list').offset();
                 if(offset){
                     me.top=me.startTop-offset.top;
                     if(offset.top<=me.startTop){
-                        $(this).find("table.oe_list_content>thead").css("transform","translateY("+me.top+"px)");
+                        $(this).find("table.oe_list_content>thead:first").css("transform","translateY("+me.top+"px)");
                     }else{
-                        $(this).find("table.oe_list_content>thead").css("transform","translateY(0px)")
+                        $(this).find("table.oe_list_content>thead:first").css("transform","translateY(0px)")
                     }
                 }
             });
