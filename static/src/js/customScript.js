@@ -218,3 +218,64 @@ var fixTableHead={
         }
     }
 }
+
+//js生成使用流程页面
+$(document).ready(function(){
+    if(!localStorage.isLoaded){
+       popBox();
+    }
+    function popBox() {
+        var $discover=$('<div class="discover"></div>');
+        $('body').append($discover);
+        var $dialog=$('<div class="modal" style="display: block" data-backdrop="static">'+
+            '<div class="modal-dialog">'+
+                '<div class="modal-content">'+
+                    '<div class="modal-header">'+
+                        '<h4 class="modal-title">温馨提醒:</h4>'+
+                    '</div>'+
+                    '<div class="modal-body">'+
+                        '<p>感谢您使用我们的系统，如果您是第一次登陆，可点击 <a href="#">此处使用向导</a>来帮助您完成操作，如果是已经知道如何操作，点击我知道了按钮退出向导！</p>'+
+                    '</div>'+
+                    '<div class="modal-footer" style="text-align: right">'+
+                        '<button type="button" class="btn btn-info">朕知道了！</button>'+
+                        '<button type="button" class="btn btn-warning">我知道了，不必再提醒了！</button> '+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>');
+        $('body').append($dialog);
+        $dialog.find("div.modal-body a").click(function (e) {
+           var e=e||event;
+           e.preventDefault();
+           statr();
+       });
+       $dialog.find("div.modal-footer>.btn-info").click(dismiss);
+       $dialog.find("div.modal-footer>.btn-warning").click(function () {
+           localStorage.isLoaded=true;
+           dismiss();
+       });
+        function dismiss() {
+           $dialog.slideUp('normal',function () {
+               $dialog.remove();
+           });
+           $discover.fadeOut('normal',function () {
+               $discover.remove();
+           });
+        }
+        function statr() {
+            $dialog.find("h4.modal-title").html("请选择模块名称");
+            $dialog.find("div.modal-body").html("<button class='btn btn-block btn-success' data-click='hr'>人力资源</button>"+
+                "<br><button class='btn btn-block btn-success' data-click='project'>项目</button>");
+            $("button[data-click]").click(function () {
+                var dc=$(this).attr("data-click");
+                if(dc=="hr"){
+                    console.log("hr");
+                    dismiss();
+                }else if(dc=="project"){
+                    console.log("project");
+                    dismiss();
+                }
+            });
+        }
+    }
+});
