@@ -221,8 +221,25 @@ var fixTableHead={
 
 //js生成使用流程页面
 $(document).ready(function(){
-    if(!localStorage.isLoaded){
-       popBox();
+    var n=0;
+    var timer=setInterval(function () {
+        n++;
+        if(n>240){return}
+        var $last=$("div.oe_im_content");
+        if($last.length===1){
+            clearInterval(timer);
+            init();
+        }
+    },500)
+    function init() {
+        $("ul.navbar-nav.navbar-left>li>a>span").each(function (i,v) {
+            if($(v).html().trim()==="人力资源"){
+                $(v).parents("li").attr('data-name','hr');
+            }
+        });
+        if(!localStorage.isLoaded){
+           popBox();
+        }
     }
     function popBox() {
         var $discover=$('<div class="discover"></div>');
@@ -237,7 +254,7 @@ $(document).ready(function(){
                         '<p>感谢您使用我们的系统，如果您是第一次登陆，可点击 <a href="#">此处使用向导</a>来帮助您完成操作，如果是已经知道如何操作，点击我知道了按钮退出向导！</p>'+
                     '</div>'+
                     '<div class="modal-footer" style="text-align: right">'+
-                        '<button type="button" class="btn btn-info">朕知道了！</button>'+
+                        '<button type="button" class="btn btn-info">以后再说！</button>'+
                         '<button type="button" class="btn btn-warning">我知道了，不必再提醒了！</button> '+
                     '</div>'+
                 '</div>'+
@@ -269,11 +286,65 @@ $(document).ready(function(){
             $("button[data-click]").click(function () {
                 var dc=$(this).attr("data-click");
                 if(dc=="hr"){
-                    console.log("hr");
+                    showHr(0);
                     dismiss();
                 }else if(dc=="project"){
                     console.log("project");
                     dismiss();
+                }
+            });
+        }
+        //用来保存点击的路径
+        var hrList=[
+            {x:0,y:0,html:"点击此处 切换到人力资源视图!",img:"/webstyle/static/src/img/guidL.png"},
+            {x:0,y:0,html:"点击此处 查看员工信息!",img:"/webstyle/static/src/img/guidL.png"},
+            {x:0,y:0,html:"点击此处 进行高级搜索和过滤!",img:"/webstyle/static/src/img/guidR.png"},
+            {x:0,y:0,html:"点击此处 查看以及编辑个人信息和团队信息!",img:"/webstyle/static/src/img/guidL.png"},
+            null,
+            null,
+        ];
+        function showHr(n) {
+            var that=arguments.callee;
+            if(n==0){
+                hrList[4]=$('<div class="discover1"></div>');
+                $('body').append(hrList[4]);
+                hrList[5]=$('<div class="tip"></div>');
+                var p1=$("li[data-name]").offset();
+                hrList[n].x=p1.left+$("li[data-name]").width()/2;
+                hrList[n].y=p1.top+$("li[data-name]").height();
+            }else if(n==1){
+                var p2=$("ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text").offset();
+                hrList[n].x=p2.left+$("ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text").width()/2;
+                hrList[n].y=p2.top+$("ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text").height();
+            }else if(n==2){
+                var p3=$("div.oe_searchview_unfold_drawer[title]").offset();
+                hrList[n].x=p3.left-177+$("div.oe_searchview_unfold_drawer[title]").width()/2;
+                hrList[n].y=p3.top+$("div.oe_searchview_unfold_drawer[title]").height();
+            }else if(n==3){
+                var p4=$('table.oe_list_content tr[data-id]:first').offset();
+                hrList[n].x=p4.left+$('table.oe_list_content tr[data-id]:first').width()/2;
+                hrList[n].y=p4.top+$('table.oe_list_content tr[data-id]:first').height();
+            }
+            hrList[5].html(hrList[n].html);
+            hrList[5].css({
+                "background":"url("+hrList[n].img+") no-repeat",
+                "left":hrList[n].x+"px",
+                "top":hrList[n].y+"px"
+            });
+            $('body').append(hrList[5]);
+            hrList[5].click(function (e) {
+                hrList[5].remove();
+                if(n==0){
+                    $("li[data-name]").children("a").trigger("click");
+                    that(1);
+                }else if(n==1){
+                    that(2);
+                }else if(n==2){
+                    that(3);
+                }else if(n==3){
+                    $('table.oe_list_content tr[data-id]:first').trigger("click");
+                    hrList[4].remove();
+                    return;
                 }
             });
         }
