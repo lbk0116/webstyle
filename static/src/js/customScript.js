@@ -209,9 +209,9 @@ var fixTableHead={
                 if(offset){
                     me.top=me.startTop-offset.top;
                     if(offset.top<=me.startTop){
-                        $(this).find("table.oe_list_content>thead:first").css("transform","translateY("+me.top+"px)");
+                        $('.oe_view_manager_body:first>div>div.oe_list>table.oe_list_content>thead:first').css("transform","translateY("+me.top+"px)");
                     }else{
-                        $(this).find("table.oe_list_content>thead:first").css("transform","translateY(0px)")
+                        $('.oe_view_manager_body:first>div>div.oe_list>table.oe_list_content>thead:first').css("transform","translateY(0px)");
                     }
                 }
             });
