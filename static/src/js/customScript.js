@@ -334,7 +334,7 @@ $(document).ready(function(){
         //用来保存工作组点击的路径
         var projectList=[
             {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
-            {x:0,y:0,needTrigger:false,tar:"li[data-name=wordGroup]>a",html:"点击此处 修改和查看工作组信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=wordGroup]>a",html:"点击此处 修改和查看工作组信息!",imgDir:false},
             {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
             {x:0,y:0,needTrigger:true,tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看工作组详细信息!",imgDir:false},
             {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑工作组信息!",imgDir:false},
