@@ -6,7 +6,11 @@ $(document).ready(function () {
     //设置body的overflow为scroll和媒体查询的meta标签
     var title=$("title").html();
     //设置页签上的icon图标
-    $("head>link[rel*=shortcut]").attr("href","/webstyle/static/src/img/favicon.ico");
+    if($("head>link[rel*=shortcut]").length){
+        $("head>link[rel*=shortcut]").attr("href","/webstyle/static/src/img/favicon.ico");
+    }else{
+        $("head").append('<link rel="shortcut icon" href="/webstyle/static/src/img/favicon.ico" type="image/x-icon">');
+    }
     if(title!=="Homepage | localhost"){
         $("body").css("overflow","auto");
         var $meta=$('<meta name="viewport" content="width=device-width,initial-scale=1"/>');
@@ -18,7 +22,7 @@ $(document).ready(function () {
     $(".oe_secondary_menu .oe_secondary_menu_section:first-child").addClass("show");
     $(".oe_secondary_menu ul.nav").css("display","none");
     menu_node.click(function(){
-        $(this).addClass("show").next("ul.nav").slideDown(200);
+        $(this).toggleClass("show").next("ul.nav").slideToggle(200);
         $(this).siblings(".oe_secondary_menu_section").removeClass("show")
             .next("ul.nav").slideUp(200);
     });
@@ -232,9 +236,22 @@ $(document).ready(function(){
         }
     },500)
     function init() {
+        var projectId;
         $("ul.navbar-nav.navbar-left>li>a>span").each(function (i,v) {
-            if($(v).html().trim()==="人力资源"){
+            if($(v).html().trim()==="人力资源"||$(v).html().trim()==="Human Resources"){
                 $(v).parents("li").attr('data-name','hr');
+            }else if($(v).html().trim()==="项目"||$(v).html().trim()==="Project"){
+                $(v).parents("li").attr('data-name','project');
+                projectId=$(v).parent("a").attr("data-menu");
+            }
+        });
+        $(".oe_secondary_menu[data-menu-parent="+projectId+"] a.oe_menu_leaf span").each(function (i,v) {
+            if($(v).html().trim()==="服务合同"||$(v).html().trim()==="nantian_contract"){
+                $(v).parents("li").attr('data-name','contract');
+            }else if($(v).html().trim()==="服务客户"||$(v).html().trim()==="partner"){
+                $(v).parents("li").attr('data-name','partner');
+            }else if($(v).html().trim()==="工作组"||$(v).html().trim()==="Products"){
+                $(v).parents("li").attr('data-name','wordGroup');
             }
         });
         if(!localStorage.isLoaded){
@@ -281,72 +298,130 @@ $(document).ready(function(){
         }
         function statr() {
             $dialog.find("h4.modal-title").html("请选择模块名称");
-            $dialog.find("div.modal-body").html("<button class='btn btn-block btn-success' data-click='hr'>人力资源</button>"+
-                "<br><button class='btn btn-block btn-success' data-click='project'>项目</button>");
+            $dialog.find("div.modal-body").html(
+                "<button class='btn btn-success' style='margin:5px 10px' data-click='hr'>人力资源</button>"+
+                "<button class='btn btn-success' style='margin:5px 10px' data-click='work-group'>工作组</button>"+
+                "<button class='btn btn-success' style='margin:5px 10px' data-click='contract'>服务合同</button>"+
+                "<button class='btn btn-success' style='margin:5px 10px' data-click='partner'>服务客户</button>"
+            );
             $("button[data-click]").click(function () {
                 var dc=$(this).attr("data-click");
                 if(dc=="hr"){
-                    showHr(0);
+                    showIllustrate(hrList,0);
                     dismiss();
-                }else if(dc=="project"){
-                    console.log("project");
+                }else if(dc=="work-group"){
+                    showIllustrate(projectList,0);
+                    dismiss();
+                }else if(dc=="contract"){
+                    showIllustrate(contractList,0);
+                    dismiss();
+                }else if(dc=="partner"){
+                    showIllustrate(partnerList,0);
                     dismiss();
                 }
             });
         }
-        //用来保存点击的路径
+        //用来保存hr点击的路径
         var hrList=[
-            {x:0,y:0,html:"点击此处 切换到人力资源视图!",img:"/webstyle/static/src/img/guidL.png"},
-            {x:0,y:0,html:"点击此处 查看员工信息!",img:"/webstyle/static/src/img/guidL.png"},
-            {x:0,y:0,html:"点击此处 进行高级搜索和过滤!",img:"/webstyle/static/src/img/guidR.png"},
-            {x:0,y:0,html:"点击此处 查看以及编辑个人信息和团队信息!",img:"/webstyle/static/src/img/guidL.png"},
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=hr]>a",html:"点击此处 切换到人力资源视图!",imgDir:false},
+            {x:0,y:0,needTrigger:false,tar:"ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text",html:"点击此处 查看员工信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看个人和团队信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑个人信息!",imgDir:false},
             null,
             null,
         ];
-        function showHr(n) {
+        //用来保存工作组点击的路径
+        var projectList=[
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
+            {x:0,y:0,needTrigger:false,tar:"li[data-name=wordGroup]>a",html:"点击此处 修改和查看工作组信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,tar:"tbody.ui-sortable>tr:first",html:"点击此处 查看工作组详细信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑工作组信息!",imgDir:false},
+            null,
+            null,
+        ];
+        //用来保存客户点击的路径
+        var partnerList=[
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=partner]>a",html:"点击我，查看和修改客户信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,tar:"tbody.ui-sortable>tr:first",html:"点击此处 查看服务客户信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务客户信息!",imgDir:false},
+            null,
+            null,
+        ];
+        //用来保存合同点击的路径
+        var contractList=[
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:"li[data-name=contract]>a",html:"点击我，查看和修改合同信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,tar:"tbody.ui-sortable>tr:first",html:"点击此处 查看服务合同详细信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务合同信息!",imgDir:false},
+            null,
+            null,
+        ];
+
+        function showIllustrate(obj,n) {
             var that=arguments.callee;
-            if(n==0){
-                hrList[4]=$('<div class="discover1"></div>');
-                $('body').append(hrList[4]);
-                hrList[5]=$('<div class="tip"></div>');
-                var p1=$("li[data-name]").offset();
-                hrList[n].x=p1.left+$("li[data-name]").width()/2;
-                hrList[n].y=p1.top+$("li[data-name]").height();
-            }else if(n==1){
-                var p2=$("ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text").offset();
-                hrList[n].x=p2.left+$("ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text").width()/2;
-                hrList[n].y=p2.top+$("ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text").height();
-            }else if(n==2){
-                var p3=$("div.oe_searchview_unfold_drawer[title]").offset();
-                hrList[n].x=p3.left-177+$("div.oe_searchview_unfold_drawer[title]").width()/2;
-                hrList[n].y=p3.top+$("div.oe_searchview_unfold_drawer[title]").height();
-            }else if(n==3){
-                var p4=$('table.oe_list_content tr[data-id]:first').offset();
-                hrList[n].x=p4.left+$('table.oe_list_content tr[data-id]:first').width()/2;
-                hrList[n].y=p4.top+$('table.oe_list_content tr[data-id]:first').height();
-            }
-            hrList[5].html(hrList[n].html);
-            hrList[5].css({
-                "background":"url("+hrList[n].img+") no-repeat",
-                "left":hrList[n].x+"px",
-                "top":hrList[n].y+"px"
-            });
-            $('body').append(hrList[5]);
-            hrList[5].click(function (e) {
-                hrList[5].remove();
-                if(n==0){
-                    $("li[data-name]").children("a").trigger("click");
-                    that(1);
-                }else if(n==1){
-                    that(2);
-                }else if(n==2){
-                    that(3);
-                }else if(n==3){
-                    $('table.oe_list_content tr[data-id]:first').trigger("click");
-                    hrList[4].remove();
-                    return;
+            var l=obj.length;
+            //打印流程元素
+            obj[l-2]=$('<div class="discover1"></div>');
+            $('body').append(obj[l-2]);
+            var num=0;
+            var timer=setInterval(function () {
+                var p=$(obj[n].tar).offset();
+                num++;
+                if(p){
+                    clearInterval(timer);
+                    obj[l-1]=$('<div class="tip"></div>');
+                    obj[l-1].css("background","url('/webstyle/static/src/img/guidL.png') no-repeat");
+                    obj[n].x=p.left+$(obj[n].tar).width()/2;
+                    if(obj[n].imgDir){
+                        obj[n].x-=177;
+                        obj[l-1].css("background","url('/webstyle/static/src/img/guidR.png') no-repeat");
+                    }
+                    obj[n].y=p.top+$(obj[n].tar).height();
+                    obj[l-1].html(obj[n].html);
+                    obj[l-1].css({
+                        "left":obj[n].x+"px",
+                        "top":obj[n].y+"px"
+                    });
+                    $('body').append(obj[l-1]);
+                    //添加元素点击事件
+                    obj[l-1].click(function (e) {
+                        obj[l-2].remove();
+                        obj[l-1].remove();
+                        if(obj[n].needTrigger){
+                            $(obj[n].tar).trigger("click");
+                        }
+                        if(n===(l-3)){return;}
+                        that(obj,n+1);
+                    });
+                }else if(num>10){
+                    clearInterval(timer);
+                    obj[l-1]=$('<div class="modal" style="display: block" data-backdrop="static">'+
+                        '<div class="modal-dialog">'+
+                            '<div class="modal-content">'+
+                                '<div class="modal-header">'+
+                                    '<h4 class="modal-title">提示:</h4>'+
+                                '</div>'+
+                                '<div class="modal-body">'+
+                                    '<p>您没有相关操作权限，请点击退出按钮退出向导！</p>'+
+                                '</div>'+
+                                '<div class="modal-footer" style="text-align: right">'+
+                                    '<button type="button" class="btn btn-warning">退出</button> '+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>');
+                    $('body').append(obj[l-1]);
+                    obj[l-1].find("button.btn").click(function () {
+                        obj[l-2].remove();
+                        obj[l-1].remove();
+                    });
                 }
-            });
+            },100);
         }
     }
 });

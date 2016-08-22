@@ -55,10 +55,10 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
 @media (min-width: 768px) {
   .openerp td.oe_leftbar {
     background-color: #fff;
-    width: 270px;
+    width: 255px;
   }
   .openerp td.oe_leftbar > div {
-    width: 270px;
+    width: 255px;
   }
   .openerp td.oe_leftbar > div .oe_secondary_menu_section {
     padding-left: 30px;
@@ -205,7 +205,7 @@ body div.discover {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 1049;
   background-color: #000;
   opacity: 0.5;
 }
@@ -215,17 +215,18 @@ body div.discover1 {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1060;
+  z-index: 1049;
   opacity: 0.2;
   background-color: #000;
 }
 body div.tip {
   position: absolute;
-  z-index: 1060;
+  z-index: 1050;
   left: 0px;
   top: 0px;
   width: 177px;
   height: 121px;
-  padding: 54px 20px 9px;
+  padding: 50px 13px 9px;
+  font-size: 19px;
   cursor: pointer;
 }
