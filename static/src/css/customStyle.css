@@ -230,3 +230,6 @@ body div.tip {
   font-size: 19px;
   cursor: pointer;
 }
+body .openerp .oe_application .oe_form_sheetbg {
+  background: url("../img/bgimg.png");
+}
