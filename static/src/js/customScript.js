@@ -28,15 +28,17 @@ $(document).ready(function () {
     });
 
     //侧栏收缩按钮
-    var $btn=$("<div class='btn_hid'></div>");
+    var $btn=$("<div class='btn_hid' title='点击此处隐藏侧栏！'></div>");
     $btn.click(function(){
         if(this.className=="btn_hid"){
             var width=$(this).parent().css("width");
-            $(this).parent().animate({"margin-left":"-"+width},200);
+            $(this).parent().animate({"margin-left":"-"+width},150);
             this.className="btn_show";
+            this.title="点击此处显示侧栏！";
         }else{
-            $(this).parent().animate({"margin-left":"0px"},200);
+            $(this).parent().animate({"margin-left":"0px"},150);
             this.className="btn_hid";
+            this.title="点击此处隐藏侧栏！";
         }
     });
     $(".openerp .oe_leftbar > div").append($btn);
@@ -51,7 +53,7 @@ $(document).ready(function () {
                 clearInterval(timer);
                 $search.click(function(e){
                     $(".oe_searchview_drawer").css({"position":"relative","top":"-140px"});
-                    $(".oe_searchview_drawer").animate({"top":"0"},300);
+                    $(".oe_searchview_drawer").animate({"top":"0"},200);
                 });
             }
         },500);

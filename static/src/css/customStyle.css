@@ -3,13 +3,18 @@
 /* [1] The web client features an embedded mode in which the webclient */
 /*     or a part of it can be started in any element of any webpage host. */
 body nav.navbar {
-  background-color: #F7F7F7;
+  background-color: #555555;
+  background-image: -webkit-linear-gradient(top, #777777, #444444);
+  background-image: -moz-linear-gradient(top, #777777, #444444);
+  background-image: -ms-linear-gradient(top, #777777, #444444);
+  background-image: -o-linear-gradient(top, #777777, #444444);
+  background-image: linear-gradient(to bottom, #777777, #444444);
   border: none;
   box-shadow: #5a5a5a 0px 1px 3px 0px;
 }
 body nav.navbar .navbar-header .navbar-toggle {
   border: none;
-  background-color: #F7F7F7;
+  background-color: transparent;
 }
 body nav.navbar .navbar-header .navbar-toggle:hover span {
   background-color: #d67911;
@@ -17,28 +22,39 @@ body nav.navbar .navbar-header .navbar-toggle:hover span {
 body nav.navbar .navbar-header .navbar-toggle:focus span {
   background-color: #d67911;
 }
-@media (min-width: 768px) {
-  body nav.navbar {
-    background-color: #444;
-  }
-}
-body #oe_main_menu_navbar .nav li > a,
-body #oe_main_menu_navbar .nav li > button {
+body #oe_main_menu_navbar ul.nav > li > a,
+body #oe_main_menu_navbar ul.nav li > button {
   color: #fff;
   font-size: 14px ;
   font-weight: bold;
   font-family: Helvetica, Arial, Microsoft Yahei, "微软雅黑", STXihei, "华文细黑", sans-serif;
-  background-color: #444;
+  background-color: transparent;
   margin-top: 0px;
   padding: 12px 8px;
 }
-body #oe_main_menu_navbar .nav li > a:hover,
-body #oe_main_menu_navbar .nav li > button:hover {
+body #oe_main_menu_navbar ul.nav > li > a:hover,
+body #oe_main_menu_navbar ul.nav li > button:hover {
   color: #d67911;
 }
-body #oe_main_menu_navbar .nav li.active > a,
-body #oe_main_menu_navbar .nav li.active > button,
-body #oe_main_menu_navbar .nav li.open > a {
+body #oe_main_menu_navbar ul.nav > li.active > a,
+body #oe_main_menu_navbar ul.nav li.active > button,
+body #oe_main_menu_navbar ul.nav li.open > a {
+  color: #d67911;
+}
+body #oe_main_menu_navbar ul.nav > li > ul.dropdown-menu {
+  background-color: #f5f5f5;
+}
+body #oe_main_menu_navbar ul.nav > li > ul.dropdown-menu li a,
+body #oe_main_menu_navbar ul.nav > li > ul.dropdown-menu li button {
+  font-size: 14px ;
+  font-weight: bold;
+  font-family: Helvetica, Arial, Microsoft Yahei, "微软雅黑", STXihei, "华文细黑", sans-serif;
+  background-color: transparent;
+  margin-top: 0px;
+  padding: 12px 8px;
+}
+body #oe_main_menu_navbar ul.nav > li > ul.dropdown-menu li a:hover,
+body #oe_main_menu_navbar ul.nav > li > ul.dropdown-menu li button:hover {
   color: #d67911;
 }
 body .openerp .oe_searchview .oe_searchview_clear {
@@ -54,7 +70,7 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
 }
 @media (min-width: 768px) {
   .openerp td.oe_leftbar {
-    background-color: #fff;
+    background-color: #F1EEE9;
     width: 255px;
   }
   .openerp td.oe_leftbar > div {
@@ -95,10 +111,11 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   border-left-color: #ff9c21;
 }
 .openerp td.oe_leftbar {
-  background-color: #fff;
+  background-color: #F1EEE9;
 }
 .openerp .oe_secondary_menu .nav-pills li > a {
   font-size: 14px;
+  color: #4C93CC;
 }
 .openerp .oe_secondary_menu .nav-pills li > a > span {
   border: 1px solid transparent;
@@ -106,23 +123,38 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   font-size: 1.1em;
 }
 .openerp .oe_secondary_menu .nav-pills li:hover > a {
-  background-color: #fff;
+  background-color: #ffffff;
+  background-image: -webkit-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -moz-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -ms-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -o-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: linear-gradient(to right, #f1eee9, #fefefe, #f1eee9);
 }
 .openerp .oe_secondary_menu .nav-pills li:hover > a > span {
-  color: #ff9c21;
-  border-bottom: 1px solid #ff9c21;
+  color: #e85f2d;
+  border-bottom: 1px solid #e85f2d;
 }
 .openerp .oe_secondary_menu .nav-pills li.active:hover > a {
-  background-color: #fff;
+  background-color: #ffffff;
+  background-image: -webkit-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -moz-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -ms-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -o-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: linear-gradient(to right, #f1eee9, #fefefe, #f1eee9);
 }
 .openerp .oe_secondary_menu .nav-pills li.active:hover > a > span {
-  color: #ff9c21;
+  color: #e85f2d;
 }
 .openerp .oe_secondary_menu .nav-pills li.active > a {
-  background-color: #fff;
+  background-color: #ffffff;
+  background-image: -webkit-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -moz-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -ms-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: -o-linear-gradient(left, #f1eee9, #fefefe, #f1eee9);
+  background-image: linear-gradient(to right, #f1eee9, #fefefe, #f1eee9);
 }
 .openerp .oe_secondary_menu .nav-pills li.active > a > span {
-  color: #444444;
+  color: #e85f2d;
   font-weight: bold;
   border-bottom: 1px solid transparent;
 }
@@ -135,7 +167,7 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   z-index: 500;
   top: 6px;
   left: 10px;
-  background-color: #ff9c21;
+  background-color: #e85f2d;
 }
 @media (min-width: 768px) {
   .openerp .oe_secondary_menu .nav-pills li.active > a > span::before {
@@ -147,7 +179,7 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
   cursor: pointer;
   margin-left: 0px;
   padding: 8px;
-  color: #999999;
+  color: #666666;
   font-size: 1.1em;
 }
 .openerp .oe_secondary_menu .oe_secondary_menu_section::before {

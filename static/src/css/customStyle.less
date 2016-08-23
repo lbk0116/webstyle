@@ -10,18 +10,38 @@
 //定义默认字体颜色
 @fontColor9:#999;
 @fontColor4:#444;
-@hoverFontColor:@mianColorLight;
-@activeFontColor:@fontColor4;
+@fontColor6:#666;
+@hoverFontColor:#E85F2D;
+@activeFontColor:#E85F2D;
+
+//线性渐变函数2色
+.linnerGradient2(@a,@b,@c){
+    background-color: @c;
+    background-image: -webkit-linear-gradient(top, @a, @b);
+    background-image: -moz-linear-gradient(top, @a, @b);
+    background-image: -ms-linear-gradient(top, @a, @b);
+    background-image: -o-linear-gradient(top, @a, @b);
+    background-image: linear-gradient(to bottom, @a, @b);
+}
+//线性渐变函数3色
+.linnerGradient3(@a, @b, @c, @d){
+    background-color: @d;
+    background-image: -webkit-linear-gradient(left, @a, @b, @c);
+    background-image: -moz-linear-gradient(left, @a, @b, @c);
+    background-image: -ms-linear-gradient(left, @a, @b, @c);
+    background-image: -o-linear-gradient(left, @a, @b, @c);
+    background-image: linear-gradient(to right, @a, @b, @c);
+}
 
 body{
     nav.navbar{
-        background-color: #F7F7F7;
+        .linnerGradient2(#777,#444,#555);
         border:none;
         box-shadow: rgb(90, 90, 90) 0px 1px 3px 0px;
         .navbar-header{
             .navbar-toggle{
                 border:none;
-                background-color: #F7F7F7;
+                background-color: transparent;
                 &:hover span{
                     background-color: @mianColor;
                 }
@@ -31,26 +51,38 @@ body{
             }
         }
     }
-    @media (min-width: 768px) {
-        nav.navbar {
-            background-color: #444;
-        }
-    }
-    #oe_main_menu_navbar .nav{
-        li>a,li>button{
+    #oe_main_menu_navbar ul.nav{
+        >li>a,li>button{
             color: #fff;
             font-size: 14px ;
             font-weight: bold;
             font-family: Helvetica,Arial,Microsoft Yahei,"微软雅黑",STXihei,"华文细黑",sans-serif;
-            background-color: #444;
+            background-color: transparent;
             margin-top:0px;
             padding:12px 8px;
         }
-        li>a:hover,li>button:hover{
+        >li>a:hover,li>button:hover{
             color: @mianColor;
         }
-        li.active>a,li.active>button,li.open>a{
+        >li.active>a,li.active>button,li.open>a{
             color: @mianColor;
+        }
+        >li>ul.dropdown-menu{
+            background-color: #f5f5f5;
+            li{
+                a,button{
+                    padding:12px 8px;
+                    font-size: 14px ;
+                    font-weight: bold;
+                    font-family: Helvetica,Arial,Microsoft Yahei,"微软雅黑",STXihei,"华文细黑",sans-serif;
+                    background-color: transparent;
+                    margin-top:0px;
+                    padding:12px 8px;
+                    &:hover{
+                        color: @mianColor;
+                    }
+                }
+            }
         }
     }
 }
@@ -72,7 +104,7 @@ body .openerp .oe_searchview {
 .openerp {
     @media (min-width: 768px) {
          td.oe_leftbar{
-            background-color: #fff;
+            background-color: #F1EEE9;
             width: 255px;
             >div{
                 width:255px;
@@ -112,11 +144,12 @@ body .openerp .oe_searchview {
         }
     }
     td.oe_leftbar{
-        background-color: #fff;
+        background-color: #F1EEE9;
     }
     .oe_secondary_menu{
         .nav-pills li > a{
             font-size: 14px;
+            color: #4C93CC;
             >span{
                 border: 1px solid transparent;
                 padding-top:2px;
@@ -124,20 +157,20 @@ body .openerp .oe_searchview {
             }
         }
         .nav-pills li:hover > a{
-            background-color: #fff;
+            .linnerGradient3(#F1EEE9, #fefefe, #F1EEE9, #fff);
             >span{
                 color:@hoverFontColor;
-                border-bottom: 1px solid @mianColorLight;
+                border-bottom: 1px solid @activeFontColor;
             }
         }
         .nav-pills li.active:hover >a{
-            background-color: #fff;
+            .linnerGradient3(#F1EEE9, #fefefe, #F1EEE9, #fff);
             >span{
                 color:@hoverFontColor;
             }
         }
         .nav-pills li.active> a{
-            background-color: #fff;
+            .linnerGradient3(#F1EEE9, #fefefe, #F1EEE9, #fff);
             >span{
                 color:@activeFontColor;
                 font-weight: bold;
@@ -152,7 +185,7 @@ body .openerp .oe_searchview {
                     @media (min-width: 768px) {
                         top:6px;left:31px;
                     }
-                    background-color: @mianColorLight;
+                    background-color: @activeFontColor;
                 }
             }
         }
@@ -160,7 +193,7 @@ body .openerp .oe_searchview {
             cursor: pointer;
             margin-left: 0px;
             padding:8px;
-            color:@fontColor9;
+            color:@fontColor6;
             font-size:1.1em;
             &::before{
                 content: "";
