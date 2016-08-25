@@ -427,3 +427,51 @@ $(document).ready(function(){
         }
     }
 });
+
+//添加提示工具
+$(document).ready(function () {
+    var tipList={
+        "项目":{
+            "服务合同":{
+                "合同约定人数":"只读：通过合同岗位动态计算得出！",
+                "现场人数":"只读：根据人员状态动态计算得出！",
+                "人员要求":"合同内规定的对人员相关要求！",
+                "资源要求":"合同内规定的对资源相关要求！",
+                "单价":"此处填写税前单价！",
+                "实际收款金额":"请根据实际收款情况填写，一旦该字段不为0，则收款状态变为“已收款”！"
+            }
+        }
+    }
+    var $tipSelf=$("<div class='tipSelf'><i></i><span></span></div>");
+    $("body").append($tipSelf);
+    function addHoverEvent (childSelector) {
+        $('body').on("mouseover",childSelector,function () {
+            var menu1=$("ul.navbar-left>li.active>a>span.oe_menu_text").html().trim();
+            var menu2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul>li.active>a>span.oe_menu_text").html().trim()
+            var menu3=$("ul.oe_view_manager_switch>li.active>a.oe_vm_switch_form").attr("data-view-type");
+            var html=$(this).html().trim();
+            var offset=$(this).offset();
+            var text=tipList[menu1];
+            if(text&&menu3=="form"){
+                text=text[menu2];
+                if(text){
+                    text=text[html];
+                    if(text){
+                        $tipSelf.children("span").html(text);
+                        $tipSelf.css({
+                            "top":offset.top-$tipSelf.height()-15+"px",
+                            "left":offset.left+"px"
+                        });
+                        $tipSelf.fadeIn(100);
+                    }
+                }
+            }
+
+        });
+        $('body').on("mouseout",childSelector,function () {
+            $tipSelf.fadeOut(100);
+        });
+    }
+    addHoverEvent ("label.oe_form_label");
+    addHoverEvent ("th.oe_sortable>div");
+});

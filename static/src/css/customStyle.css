@@ -265,3 +265,32 @@ body div.tip {
 body .openerp .oe_application .oe_form_sheetbg {
   background: url("../img/bgimg.png");
 }
+body div.tipSelf {
+  display: none;
+  position: absolute;
+  z-index: 1070;
+  top: 118px;
+  left: 362px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: bold;
+  font-family: Helvetica, Arial, Microsoft Yahei, "微软雅黑", STXihei, "华文细黑", sans-serif;
+  background-color: #222;
+  max-width: 320px;
+  border-radius: 6px;
+}
+body div.tipSelf i {
+  position: absolute;
+  z-index: 1071;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  bottom: -4px;
+  left: 20px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotateZ(45deg);
+  background-color: #222;
+}
