@@ -447,7 +447,7 @@ $(document).ready(function () {
     function addHoverEvent (childSelector) {
         $('body').on("mouseover",childSelector,function () {
             var menu1=$("ul.navbar-left>li.active>a>span.oe_menu_text").html().trim();
-            var menu2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul>li.active>a>span.oe_menu_text").html().trim()
+            var menu2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul li.active>a>span.oe_menu_text").html().trim()
             var menu3=$("ul.oe_view_manager_switch>li.active>a.oe_vm_switch_form").attr("data-view-type");
             var html=$(this).html().trim();
             var offset=$(this).offset();
