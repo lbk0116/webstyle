@@ -96,8 +96,8 @@ $(document).ready(function () {
                  '<ul data-tag="work_age"><li>工作年限：</li><li><a href="1">1年</a></li><li><a href="2">2年</a></li><li><a href="3">3年</a></li><li><a href="4">4年</a></li><li><a href="5">5年</a></li><li><a href="6">6年</a></li><li><a href="7">7年以上</a></li></ul>'+
                  '<ul data-tag="certificate_institutions_id"><li>证书：</li><li><a href="cisco">Cisco</a></li><li><a href="华为">华为</a></li><li><a href="华三">华三</a></li><li><a href="F5">F5</a></li><li><a href="IBM">IBM</a></li></ul>'+
                  '<ul data-tag="level"><li>级别：</li><li><a href="1">1级</a></li><li><a href="2">2级</a></li><li><a href="3">3级</a></li><li><a href="4">4级</a></li><li><a href="5">5级</a></li><li><a href="6">6级</a></li></ul>'+
-                 '<ul data-tag="category"><li>人员归属：</li><li><a href="在公司">在公司</a></li><li><a href="在合同中">在合同中</a></li><li><a href="赠送">赠送</a></li><li><a href="开发">开发</a></li><li><a href="其他">其他</a></li></ul>'+
-                 '<ul data-tag="project_id"><li>客户：</li><li><a href="中行">中行</a></li><li><a href="建行">建行</a></li><li><a href="农行">农行</a></li><li><a href="国开">国开</a></li><li><a href="光大">光大</a></li><li><a href="农发">农发</a></li><li><a href="信达">信达</a></li></ul>'+
+                 '<ul data-tag="category"><li>人员状态：</li><li><a href="公司储备">公司储备</a></li><li><a href="合同在岗">合同在岗</a></li><li><a href="合同备岗">合同备岗</a></li><li><a href="合同赠送">合同赠送</a></li><li><a href="公司项目">公司项目</a></li></ul>'+
+                 '<ul data-tag="project_id"><li>工作组：</li><li><a href="中行">中行</a></li><li><a href="建行">建行</a></li><li><a href="农行">农行</a></li><li><a href="国开">国开</a></li><li><a href="光大">光大</a></li><li><a href="农发">农发</a></li><li><a href="信达">信达</a></li></ul>'+
              '</div>');
          // var $div=$("<form><input type='submit' value='查询'></form>");
          $(".oe_searchview_drawer").append($div);
@@ -107,7 +107,7 @@ $(document).ready(function () {
              //开始先删除相关的已选择的选项标签
              var tag={level:"Level",
                  certificate_institutions_id:"证书颁发机构或行业",
-                 category:"人员所属",
+                 category:"人员状态",
                  project_id:"Project",
                  work_age:"Work age"};
              $("span.oe_facet_values>span.oe_facet_value").each(function (i,span) {
