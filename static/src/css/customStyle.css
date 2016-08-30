@@ -294,3 +294,6 @@ body div.tipSelf i {
   transform: rotateZ(45deg);
   background-color: #222;
 }
+body div.openerp_webclient_container div.oe_form_field.oe_form_field_one2many {
+  overflow: auto;
+}
