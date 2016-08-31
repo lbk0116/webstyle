@@ -325,41 +325,43 @@ $(document).ready(function(){
         }
         //用来保存hr点击的路径
         var hrList=[
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=hr]>a",html:"点击此处 切换到人力资源视图!",imgDir:false},
-            {x:0,y:0,needTrigger:false,tar:"ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text",html:"点击此处 查看员工信息!",imgDir:false},
-            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
-            {x:0,y:0,needTrigger:true,tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看个人和团队信息!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑个人信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=hr]>a",html:"点击此处 切换到人力资源视图!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["",0],tar:"ul.nav>li.active>a.oe_menu_leaf>span.oe_menu_text",html:"点击此处 查看员工信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["",0],tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看个人和团队信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑个人信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["div.oe_view_manager_body:first",200],tar:"ul.oe_notebook>li:nth-child(2)>a.ui-tabs-anchor",html:"点击此处 编辑团队信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["div.oe_view_manager_body:first",600],tar:".oe_form_label:eq(26)",html:"点击此处 编辑工作组归属!",imgDir:false},
             null,
             null,
         ];
         //用来保存工作组点击的路径
         var projectList=[
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=wordGroup]>a",html:"点击此处 修改和查看工作组信息!",imgDir:false},
-            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
-            {x:0,y:0,needTrigger:true,tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看工作组详细信息!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑工作组信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=wordGroup]>a",html:"点击此处 修改和查看工作组信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["",0],tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看工作组详细信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑工作组信息!",imgDir:false},
             null,
             null,
         ];
         //用来保存客户点击的路径
         var partnerList=[
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=partner]>a",html:"点击我，查看和修改客户信息!",imgDir:false},
-            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
-            {x:0,y:0,needTrigger:true,tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看服务客户信息!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务客户信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=partner]>a",html:"点击我，查看和修改客户信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["",0],tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看服务客户信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务客户信息!",imgDir:false},
             null,
             null,
         ];
         //用来保存合同点击的路径
         var contractList=[
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:"li[data-name=contract]>a",html:"点击我，查看和修改合同信息!",imgDir:false},
-            {x:0,y:0,needTrigger:false,tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
-            {x:0,y:0,needTrigger:true,tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看服务合同详细信息!",imgDir:false},
-            {x:0,y:0,needTrigger:true,tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务合同信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=contract]>a",html:"点击我，查看和修改合同信息!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["",0],tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看服务合同详细信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务合同信息!",imgDir:false},
             null,
             null,
         ];
@@ -370,6 +372,10 @@ $(document).ready(function(){
             //打印流程元素
             obj[l-2]=$('<div class="discover1"></div>');
             $('body').append(obj[l-2]);
+            var sel=obj[n].needScroll[0];
+            if(sel){
+                $(sel).scrollTop(obj[n].needScroll[1]);
+            }
             var num=0;
             var timer=setInterval(function () {
                 var p=$(obj[n].tar).offset();
@@ -400,7 +406,7 @@ $(document).ready(function(){
                         if(n===(l-3)){return;}
                         that(obj,n+1);
                     });
-                }else if(num>10){
+                }else if(num>15){
                     clearInterval(timer);
                     obj[l-1]=$('<div class="modal" style="display: block" data-backdrop="static">'+
                         '<div class="modal-dialog">'+
@@ -439,6 +445,11 @@ $(document).ready(function () {
                 "资源要求":"合同内规定的对资源相关要求！",
                 "单价(人/时间)":"此处为税前单价！",
                 "实际收款金额":"请根据实际收款情况填写，一旦该字段不为0，则收款状态变为“已收款”！"
+            }
+        },
+        "人力资源":{
+            "员工":{
+                "所在工作组":"必须先填写该字段，才能选择以下字段！"
             }
         }
     }
