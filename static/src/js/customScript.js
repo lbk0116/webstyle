@@ -486,3 +486,21 @@ $(document).ready(function () {
     addHoverEvent ("label.oe_form_label");
     addHoverEvent ("th.oe_sortable>div");
 });
+
+//服务台中二级表格溢出的问题
+$(document).ready(function () {
+    $("body").on("click","a.ui-tabs-anchor",function () {
+        $('table.oe_list_content td').off("click",addTdClickEvent);
+        var text=$(this).html().trim();
+        if(text==="处理过程与客户反馈"){
+            $('table.oe_list_content td').on("click",addTdClickEvent);
+        }
+    });
+    function addTdClickEvent() {
+        $(this).parents("table.oe_list_content").find("td").removeAttr("style");
+        var text=$(this).html().trim();
+        if(text.length>7){
+            $(this).css("overflow","visible");
+        }
+    }
+});
