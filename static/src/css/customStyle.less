@@ -328,6 +328,18 @@ body{
     div.openerp_webclient_container{
         div.oe_form_field.oe_form_field_one2many{
             overflow: auto;
+            table.oe_list_content{
+                table-layout: fixed;
+                tbody{
+                    tr{
+                        td,th{
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
         }
     }
 }

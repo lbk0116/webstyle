@@ -297,3 +297,12 @@ body div.tipSelf i {
 body div.openerp_webclient_container div.oe_form_field.oe_form_field_one2many {
   overflow: auto;
 }
+body div.openerp_webclient_container div.oe_form_field.oe_form_field_one2many table.oe_list_content {
+  table-layout: fixed;
+}
+body div.openerp_webclient_container div.oe_form_field.oe_form_field_one2many table.oe_list_content tbody tr td,
+body div.openerp_webclient_container div.oe_form_field.oe_form_field_one2many table.oe_list_content tbody tr th {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
