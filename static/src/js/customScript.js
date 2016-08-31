@@ -383,11 +383,11 @@ $(document).ready(function(){
                 if(p){
                     clearInterval(timer);
                     obj[l-1]=$('<div class="tip"></div>');
-                    obj[l-1].css("background","url('/webstyle/static/src/img/guidL.png') no-repeat");
+                    obj[l-1].css("background","url('/webstyle/static/src/img/guideL.png') no-repeat");
                     obj[n].x=p.left+$(obj[n].tar).width()/2;
                     if(obj[n].imgDir){
                         obj[n].x-=177;
-                        obj[l-1].css("background","url('/webstyle/static/src/img/guidR.png') no-repeat");
+                        obj[l-1].css("background","url('/webstyle/static/src/img/guideR.png') no-repeat");
                     }
                     obj[n].y=p.top+$(obj[n].tar).height();
                     obj[l-1].html(obj[n].html);
