@@ -295,7 +295,7 @@ body {
 }
 //添加提示工具
 body{
-    div.tipSelf{
+    .tipSelf{
         display: none;
         position: absolute;
         z-index: 1070;
@@ -306,8 +306,25 @@ body{
         font-weight: bold;
         font-family: Helvetica,Arial,Microsoft Yahei,"微软雅黑",STXihei,"华文细黑",sans-serif;
         background-color: #222;
-        max-width: 320px;
         border-radius: 6px;
+        span{
+            display: inline-block;
+            max-width: 250px;
+            overflow:hidden;
+            cursor: text;
+        }
+        b{
+            display: inline-block;
+            width: 16px;height:16px;
+            position: absolute;
+            right:-5px;top:-5px;
+            border-radius: 50%;
+            background-color: #e4393c;
+            color: #fff;
+            text-align: center;
+            line-height: 16px;
+            cursor: pointer;
+        }
         i{
             position: absolute;
             z-index: 1071;

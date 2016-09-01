@@ -496,11 +496,29 @@ $(document).ready(function () {
             $('table.oe_list_content td').on("click",addTdClickEvent);
         }
     });
+    var $tipSelfP=$("<p class='tipSelf'><i></i><span></span><b>×</b></p>");
     function addTdClickEvent() {
-        $(this).parents("table.oe_list_content").find("td").removeAttr("style");
-        var text=$(this).html().trim();
+        var text=$(this).html();
+        var offset=$(this).offset();
         if(text.length>7){
-            $(this).css("overflow","visible");
+            if(text){
+                $tipSelfP.children("span").html(text);
+                var n=$("body>p.tipSelf").length;
+                if(n<1){
+                    $("body").append($tipSelfP);
+                    $("body>p.tipSelf").on("click","b",function () {
+                        $tipSelfP.remove();
+                    });
+                    $('div.oe_view_manager_body:first').scroll(function () {
+                        $tipSelfP.remove();
+                    });
+                }
+                $tipSelfP.css({
+                    "top":offset.top-$tipSelfP.height()-15+"px",
+                    "left":offset.left+"px"
+                });
+                $tipSelfP.fadeIn(150);
+            }
         }
     }
 });

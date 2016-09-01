@@ -265,7 +265,7 @@ body div.tip {
 body .openerp .oe_application .oe_form_sheetbg {
   background: url("../img/bgimg.png");
 }
-body div.tipSelf {
+body .tipSelf {
   display: none;
   position: absolute;
   z-index: 1070;
@@ -276,10 +276,29 @@ body div.tipSelf {
   font-weight: bold;
   font-family: Helvetica, Arial, Microsoft Yahei, "微软雅黑", STXihei, "华文细黑", sans-serif;
   background-color: #222;
-  max-width: 320px;
   border-radius: 6px;
 }
-body div.tipSelf i {
+body .tipSelf span {
+  display: inline-block;
+  max-width: 250px;
+  overflow: hidden;
+  cursor: text;
+}
+body .tipSelf b {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  border-radius: 50%;
+  background-color: #e4393c;
+  color: #fff;
+  text-align: center;
+  line-height: 16px;
+  cursor: pointer;
+}
+body .tipSelf i {
   position: absolute;
   z-index: 1071;
   display: inline-block;
