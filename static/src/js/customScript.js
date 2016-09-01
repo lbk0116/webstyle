@@ -248,7 +248,7 @@ $(document).ready(function(){
             }
         });
         $(".oe_secondary_menu[data-menu-parent="+projectId+"] a.oe_menu_leaf span").each(function (i,v) {
-            if($(v).html().trim()==="服务合同"||$(v).html().trim()==="nantian_contract"){
+            if($(v).html().trim()==="合同"||$(v).html().trim()==="nantian_contract"){
                 $(v).parents("li").attr('data-name','contract');
             }else if($(v).html().trim()==="服务客户"||$(v).html().trim()==="partner"){
                 $(v).parents("li").attr('data-name','partner');
@@ -303,7 +303,7 @@ $(document).ready(function(){
             $dialog.find("div.modal-body").html(
                 "<button class='btn btn-success' style='margin:5px 10px' data-click='hr'>人力资源</button>"+
                 "<button class='btn btn-success' style='margin:5px 10px' data-click='work-group'>工作组</button>"+
-                "<button class='btn btn-success' style='margin:5px 10px' data-click='contract'>服务合同</button>"+
+                "<button class='btn btn-success' style='margin:5px 10px' data-click='contract'>合同</button>"+
                 "<button class='btn btn-success' style='margin:5px 10px' data-click='partner'>服务客户</button>"
             );
             $("button[data-click]").click(function () {
@@ -360,8 +360,8 @@ $(document).ready(function(){
             {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=project]>a",html:"点击此处 切换到项目视图!",imgDir:false},
             {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"li[data-name=contract]>a",html:"点击我，查看和修改合同信息!",imgDir:false},
             {x:0,y:0,needTrigger:false,needScroll:["",0],tar:"div.oe_searchview_unfold_drawer[title]",html:"点击此处 进行高级搜索和过滤!",imgDir:true},
-            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看服务合同详细信息!",imgDir:false},
-            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑服务合同信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看合同详细信息!",imgDir:false},
+            {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑合同信息!",imgDir:false},
             null,
             null,
         ];
@@ -438,7 +438,7 @@ $(document).ready(function(){
 $(document).ready(function () {
     var tipList={
         "项目":{
-            "服务合同":{
+            "合同":{
                 "合同约定人数":"只读：通过合同岗位动态计算得出！",
                 "现场人数":"只读：根据人员状态动态计算得出！",
                 "人员要求":"合同内规定的对人员相关要求！",
@@ -449,7 +449,7 @@ $(document).ready(function () {
         },
         "人力资源":{
             "员工":{
-                "所在工作组":"必须先关联该字段，才能匹配人员状态、服务合同、合同岗位等字段！"
+                "所在工作组":"必须先关联该字段，才能匹配人员状态、合同、合同岗位等字段！"
             }
         }
     }
@@ -489,12 +489,26 @@ $(document).ready(function () {
 
 //服务台中二级表格溢出的问题
 $(document).ready(function () {
+    var isEditing=false;
     $("body").on("click","a.ui-tabs-anchor",function () {
         $('table.oe_list_content td').off("click",addTdClickEvent);
         var text=$(this).html().trim();
-        if(text==="处理过程与客户反馈"){
+        if(text==="处理过程与客户反馈"&&!isEditing){
             $('table.oe_list_content td').on("click",addTdClickEvent);
         }
+    });
+    $("body").on("click",".oe_form_buttons_view button.oe_form_button_edit",function () {
+        var menu1=$("ul.navbar-left>li.active>a>span.oe_menu_text").html().trim();
+        var menu2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul li.active>a>span.oe_menu_text").html().trim()
+        var menu3=$("ul.oe_view_manager_switch>li.active>a.oe_vm_switch_form").attr("data-view-type");
+        if(menu1=="服务台"&&menu2=="待处理"&&menu3=="form"){
+            isEditing=true;
+            startEdit();
+        }
+    });
+    $("body").on("click",".oe_form_buttons_edit [class*=oe_form_button]",function () {
+        isEditing=false;
+        $('div.oe_view_manager_body a.ui-tabs-anchor:first').trigger('click');
     });
     var $tipSelfP=$("<p class='tipSelf'><i></i><span></span><b>×</b></p>");
     function addTdClickEvent() {
@@ -520,5 +534,28 @@ $(document).ready(function () {
                 $tipSelfP.fadeIn(150);
             }
         }
+    }
+    //根据不同的case状态修改输入区域为只读（Feng Yan）
+    function startEdit() {
+        var status=$('.oe_form_field_status>li.oe_active>span.label').html();
+        var n=0;
+        var timer=setInterval(function () {
+            n++;
+            if(n>120){return}
+            var length=$("table.oe_list_content tr[data-id]").length;
+            if(length>0){
+                clearInterval(timer);
+                $("table.oe_list_content tr[data-id] td").click(function () {
+                    setTimeout(function () {
+                        if(status!=="客户反馈"){
+                            $('.oe_form_nosheet span[data-fieldname=result]>input').attr("disabled",true);
+                            $('.oe_form_nosheet div[data-fieldname=note]>textarea').attr("disabled",true);
+                        }else{
+                            $('.oe_form_nosheet div[data-fieldname=record]>textarea').attr("disabled",true);
+                        }
+                    },100);
+                });
+            }
+        },500);
     }
 });
