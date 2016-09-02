@@ -326,11 +326,19 @@ body div.openerp_webclient_container div.oe_notebook_page > div.oe_form_field.oe
   white-space: nowrap;
 }
 body #wrapwrap main {
-  background: url("../img/bgLogin.jpg") no-repeat 20% 50% #4575c7;
+  background-color: #4575C7;
 }
 body #wrapwrap main .oe_website_login_container {
-  margin: 60px 20% 60px 50%;
+  margin: 60px auto;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 6px;
+}
+@media (min-width: 768px) {
+  body #wrapwrap main {
+    background: url("../img/bgLogin.png") no-repeat 20% 50% #4575c7;
+  }
+  body #wrapwrap main .oe_website_login_container {
+    margin: 60px 20% 60px 50%;
+  }
 }
