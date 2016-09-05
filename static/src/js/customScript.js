@@ -2,6 +2,48 @@
  * Created by Administrator on 2016/8/1.
  */
 
+//一个全局对象用来固定表头和判断当前页面所处的菜单位置
+var fixTableHead={
+    top:0,
+    startTop:0,
+    isIE:false,
+    init:function () {
+        var me = this;
+        setTimeout(boot, 500);
+        var n = 0;
+        function boot() {
+            n++;
+            if (n > 240) { return }
+            if ($('div.oe_view_manager_body').length == 1) {
+                start();
+            } else {
+                setTimeout(boot, 500);
+            }
+        }
+        function start() {
+            $('div.oe_view_manager_body:first').scroll(function () {
+                me.startTop=$('div.oe_view_manager_body').offset().top;
+                var offset = $('.oe_view_manager_view_list').offset();
+                if(offset){
+                    me.top=me.startTop-offset.top;
+                    if(offset.top<=me.startTop){
+                        $('.oe_view_manager_body:first>div>div.oe_list>table.oe_list_content>thead:first').css("transform","translateY("+me.top+"px)");
+                    }else{
+                        $('.oe_view_manager_body:first>div>div.oe_list>table.oe_list_content>thead:first').css("transform","translateY(0px)");
+                    }
+                }
+            });
+        }
+    },
+    menuPosition:function () {
+        var obj={m1:null,m2:null,m3:null};
+        obj.m1=$("ul.navbar-left>li.active>a>span.oe_menu_text").html().trim();
+        obj.m2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul li.active>a>span.oe_menu_text").html().trim()
+        obj.m3=$("ul.oe_view_manager_switch>li.active>a.oe_vm_switch_form").attr("data-view-type");
+        return obj;
+    }
+}
+
 $(document).ready(function () {
     //设置body的overflow为scroll和媒体查询的meta标签
     var title=$("title").html();
@@ -191,46 +233,16 @@ $(document).ready(function () {
         fixTableHead.init();
     });
 });
-var fixTableHead={
-    top:0,
-    startTop:0,
-    isIE:false,
-    init:function () {
-        var me = this;
-        setTimeout(boot, 500);
-        var n = 0;
-        function boot() {
-            n++;
-            if (n > 240) { return }
-            if ($('div.oe_view_manager_body').length == 1) {
-                start();
-            } else {
-                setTimeout(boot, 500);
-            }
-        }
-        function start() {
-            $('div.oe_view_manager_body:first').scroll(function () {
-                me.startTop=$('div.oe_view_manager_body').offset().top;
-                var offset = $('.oe_view_manager_view_list').offset();
-                if(offset){
-                    me.top=me.startTop-offset.top;
-                    if(offset.top<=me.startTop){
-                        $('.oe_view_manager_body:first>div>div.oe_list>table.oe_list_content>thead:first').css("transform","translateY("+me.top+"px)");
-                    }else{
-                        $('.oe_view_manager_body:first>div>div.oe_list>table.oe_list_content>thead:first').css("transform","translateY(0px)");
-                    }
-                }
-            });
-        }
-    }
-}
 
 //js生成使用流程页面
 $(document).ready(function(){
     var n=0;
     var timer=setInterval(function () {
         n++;
-        if(n>240){return}
+        if(n>240){
+            clearInterval(timer);
+            return;
+        }
         var $last=$("div.oe_im_content");
         if($last.length===1){
             clearInterval(timer);
@@ -457,14 +469,13 @@ $(document).ready(function () {
     $("body").append($tipSelf);
     function addHoverEvent (childSelector) {
         $('body').on("mouseover",childSelector,function () {
-            var menu1=$("ul.navbar-left>li.active>a>span.oe_menu_text").html().trim();
-            var menu2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul li.active>a>span.oe_menu_text").html().trim()
-            var menu3=$("ul.oe_view_manager_switch>li.active>a.oe_vm_switch_form").attr("data-view-type");
+            //判断当前的菜单位置
+            var obj=fixTableHead.menuPosition();
             var html=$(this).html().trim();
             var offset=$(this).offset();
-            var text=tipList[menu1];
-            if(text&&menu3=="form"){
-                text=text[menu2];
+            var text=tipList[obj.m1];
+            if(text&&(obj.m3=="form")){
+                text=text[obj.m2];
                 if(text){
                     text=text[html];
                     if(text){
@@ -477,7 +488,6 @@ $(document).ready(function () {
                     }
                 }
             }
-
         });
         $('body').on("mouseout",childSelector,function () {
             $tipSelf.fadeOut(100);
@@ -490,6 +500,7 @@ $(document).ready(function () {
 //服务台中二级表格溢出的问题
 $(document).ready(function () {
     var isEditing=false;
+    var isAddEvent=false;//用来判断是否添加按钮的绑定时间
     $("body").on("click","a.ui-tabs-anchor",function () {
         $('table.oe_list_content td').off("click",addTdClickEvent);
         var text=$(this).html().trim();
@@ -498,17 +509,20 @@ $(document).ready(function () {
         }
     });
     $("body").on("click",".oe_form_buttons_view button.oe_form_button_edit",function () {
-        var menu1=$("ul.navbar-left>li.active>a>span.oe_menu_text").html().trim();
-        var menu2=$("div.oe_secondary_menus_container>div.oe_secondary_menu>ul li.active>a>span.oe_menu_text").html().trim()
-        var menu3=$("ul.oe_view_manager_switch>li.active>a.oe_vm_switch_form").attr("data-view-type");
-        if(menu1=="服务台"&&menu2=="待处理"&&menu3=="form"){
+        //判断当前的菜单位置
+        var o=fixTableHead.menuPosition();
+        if(o.m1=="服务台"&&o.m2=="待处理"&&o.m3=="form"){
             isEditing=true;
             startEdit();
         }
-    });
-    $("body").on("click",".oe_form_buttons_edit [class*=oe_form_button]",function () {
-        isEditing=false;
-        $('div.oe_view_manager_body a.ui-tabs-anchor:first').trigger('click');
+        if(!isAddEvent){
+            $(".oe_form_buttons_edit [class*=oe_form_button]").click(function () {
+                isEditing=false;
+                isAddEvent=true;
+                $('div.oe_view_manager_body a.ui-tabs-anchor:first').trigger('click');
+                hiddenTacBtn(10);
+            });
+        }
     });
     var $tipSelfP=$("<p class='tipSelf'><i></i><span></span><b>×</b></p>");
     function addTdClickEvent() {
@@ -535,13 +549,16 @@ $(document).ready(function () {
             }
         }
     }
-    //根据不同的case状态修改输入区域为只读（Feng Yan）
+    //根据不同的case状态修改输入区域为只读 for（Feng Yan）
     function startEdit() {
         var status=$('.oe_form_field_status>li.oe_active>span.label').html();
         var n=0;
         var timer=setInterval(function () {
             n++;
-            if(n>120){return}
+            if(n>120){
+                clearInterval(timer);
+                return;
+            }
             var length=$("table.oe_list_content tr[data-id]").length;
             if(length>0){
                 clearInterval(timer);
@@ -557,5 +574,57 @@ $(document).ready(function () {
                 });
             }
         },500);
+    }
+    // 根据页面隐藏字段属性判断是否隐藏TAC二线线处理按钮 for(Li Nana)
+    $("body").on("click","table.oe_list_content tr.oe_group_header",function () {
+        var n=0;
+        var timer0=setInterval(function () {
+            n++;
+            if(n>200){
+                clearInterval(timer0);
+                return;
+            }
+            if($('table.oe_list_content td[data-field]').length>6){
+                clearInterval(timer0);
+                $('table.oe_list_content td[data-field]').click(function(){
+                    hiddenTacBtn(20);
+                });
+            }
+        },100);
+    });
+    var t1=0;
+    var timer1=setInterval(function () {
+        t1++;
+        if(t1>120){
+            clearInterval(timer1);
+            return;
+        }
+        var is_oem=$("span>input[name=is_oem]").length;
+        if(is_oem>0){
+            clearInterval(timer1);
+            //判断当前的菜单位置
+            var o=fixTableHead.menuPosition();
+            if(o.m1=="服务台"&&o.m2=="待处理"&&o.m3=="form"){
+                hiddenTacBtn(10);
+            }
+        }
+    },500);
+    function hiddenTacBtn(m) {
+        var n=0;
+        var timer=setInterval(function () {
+            n++;
+            if(n>m){
+                clearInterval(timer);
+                return;
+            }
+            var is_oem=$("span>input[name=is_oem]:checked").length;
+            if(is_oem){
+                $("header button.oe_button span").each(function (i,v) {
+                    if($(v).html()=="转TAC二线团队"){
+                        $(v).parent("button").attr("disabled",true);
+                    }
+                });
+            }
+        },300);
     }
 });
