@@ -334,6 +334,12 @@ body #wrapwrap main .oe_website_login_container {
   padding: 20px;
   border-radius: 6px;
 }
+body #wrapwrap main #wrap {
+  background-color: #fff;
+}
+body #wrapwrap main > div.container {
+  background-color: #fff;
+}
 @media (min-width: 768px) {
   body #wrapwrap main {
     background: url("../img/bgLogin.png") no-repeat 20% 50% #4575c7;
