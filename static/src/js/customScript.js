@@ -108,6 +108,9 @@ $(document).ready(function () {
             .next("ul.nav").css("display","none");
         red();
     });
+    $("body").on("click","ul.oe_secondary_submenu>li",function () {
+         red();
+    });
 });
 
 //人力资源添加默认字段搜索
@@ -131,6 +134,12 @@ $(document).ready(function () {
          var strb=$(this).children("span.oe_menu_text").html().trim();
          if(strb==="人力资源"){
              setTimeout(boot,500);
+         }
+     });
+     $("body").on("click","ul.oe_secondary_submenu>li",function () {
+         var tarText=$(this).find("a>span.oe_menu_text").html().trim();
+         if(tarText=="员工"){
+            setTimeout(boot,500);
          }
      });
      function addSearchKey(){
