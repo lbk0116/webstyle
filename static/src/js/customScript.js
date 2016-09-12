@@ -638,3 +638,10 @@ $(document).ready(function () {
         },300);
     }
 });
+
+//添加快捷链接
+$(document).ready(function () {
+    var $shortcut=$("<div class='shortcut hidden'></div>");
+    
+    $("body").append($shortcut);
+});

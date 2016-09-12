@@ -349,3 +349,9 @@ body #wrapwrap main > div.container {
     margin: 60px 20% 60px 50%;
   }
 }
+body .shortcut {
+  position: absolute;
+  width: 100%;
+  background-color: #0f0;
+  z-index: 100;
+}
