@@ -224,24 +224,40 @@ body .openerp .oe_searchview {
         ul{
             list-style: none;
             overflow: hidden;
+            border-bottom: 1px solid #ddd;
+            width: 54%;
+            padding-left: 0px;
+            margin-left: 96px;
+            padding-bottom: 2px;
             li{
                 float: left;
                 &:first-child{
-                    width:80px;
-                    text-align: right;
+                    width:74px;
+                    padding-left: 4px;
+                    margin-top:-6px;
+                    font-weight: bold;
+                    color: #7C7BAD;
                 }
                 a{
-                    padding:4px 20px;
+                    display: inline-block;
+                    margin:  0px 28px 0px 4px;
                     color:#666;
+                    line-height: 24px;
+                    font-size: 13px;
                     &:hover{
                         background-color: #f0f0fa;
                     }
                 }
             }
             li.active>a{
-                background-color: @mianColor;
-                border-radius: 42%;
+                background-color: #7c7bad;
+                border-radius: 10px;
+                min-width: 10px;
+                padding: 3px 7px;
                 color:#fff;
+                font-size: 12px;
+                line-height:12px;
+                margin-top: 4px;
             }
         }
     }

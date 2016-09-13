@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['web'],
+    'depends': ['web','nantian_erp','server_desk'],
 
     # always loaded
     'data': [
