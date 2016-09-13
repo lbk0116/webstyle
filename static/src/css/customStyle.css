@@ -207,25 +207,41 @@ body .openerp .oe_searchview .oe_searchview_unfold_drawer::after {
 .oe_searchview_drawer .col-md-12 ul {
   list-style: none;
   overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  width: 50%;
+  padding-left: 0px;
+  margin-left: 96px;
+  padding-bottom: 2px;
 }
 .oe_searchview_drawer .col-md-12 ul li {
   float: left;
 }
 .oe_searchview_drawer .col-md-12 ul li:first-child {
-  width: 80px;
-  text-align: right;
+  width: 74px;
+  padding-left: 4px;
+  margin-top: -6px;
+  font-weight: bold;
+  color: #7C7BAD;
 }
 .oe_searchview_drawer .col-md-12 ul li a {
-  padding: 4px 20px;
+  display: inline-block;
+  margin: 0px 32px 0px 4px;
   color: #666;
+  line-height: 24px;
+  font-size: 13px;
 }
 .oe_searchview_drawer .col-md-12 ul li a:hover {
   background-color: #f0f0fa;
 }
 .oe_searchview_drawer .col-md-12 ul li.active > a {
-  background-color: #d67911;
-  border-radius: 42%;
+  background-color: #7c7bad;
+  border-radius: 10px;
+  min-width: 10px;
+  padding: 3px 7px;
   color: #fff;
+  font-size: 12px;
+  line-height: 12px;
+  margin-top: 4px;
 }
 .navbar span.oe_topbar_name {
   line-height: 15px;
