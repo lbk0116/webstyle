@@ -158,6 +158,7 @@ $(document).ready(function () {
              '</div>');
          // var $div=$("<form><input type='submit' value='查询'></form>");
          $(".oe_searchview_drawer").append($div);
+         var isTrigger=false;
          var indexObj={};
          //{"work_age":["1","2","3","4","5","6","7"],"certificate_institutions_id":["cisco","华为","华三","F5","IBM"],"level":["1","2","3","4","5","6"],"category":["在公司","在合同中","赠送","开发","其他"],"project_id":["中行","建行","农行","国开","广大","农发","信达"]}
          function refreshData(obj,t) {
@@ -170,7 +171,9 @@ $(document).ready(function () {
              $("span.oe_facet_values>span.oe_facet_value").each(function (i,span) {
                  var html=$(span).html().trim();
                  if(html.indexOf(tag[t])===0){
+                     isTrigger=true;
                      $(this).parent("span").siblings("span.oe_facet_remove").trigger("click");
+                     isTrigger=false;
                  }
              });
 
@@ -206,6 +209,18 @@ $(document).ready(function () {
              if(length>0){
                  $("form button.oe_apply:first").trigger("submit");
              }
+             $("div.oe_searchview_facets span.oe_facet_remove").click(function () {
+                 if(!isTrigger){
+                     var tar=$(this).siblings(".oe_facet_values").find("span.oe_facet_value").html().trim();
+                     $.each(tag,function (i,v) {
+                         if(tar.indexOf(v)>=0){
+                             indexObj[i]=[];
+                             $("ul[data-tag="+i+"]>li").removeClass("active");
+                             refreshData(indexObj,i);
+                         }
+                     });
+                 }
+             });
          }
          $("div.col-md-12>ul>li>a").click(function(e){
              var e=e||event;
