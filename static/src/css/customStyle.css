@@ -365,9 +365,47 @@ body #wrapwrap main > div.container {
     margin: 60px 20% 60px 50%;
   }
 }
-body .shortcut {
+body.bg {
+  background: url("../img/bgimg.png");
+}
+body div.openerp_webclient_container {
+  -moz-transition: margin-top 0.25s linear;
+  -webkit-transition: margin-top 0.25s linear;
+  -o-transition: margin-top 0.25s linear;
+  transition: margin-top 0.25s linear;
+}
+body div.openerp_webclient_container.showShortcut {
+  margin-top: 176px;
+}
+body div.shortcut {
   position: absolute;
-  width: 100%;
-  background-color: #0f0;
-  z-index: 100;
+  width: 1350px;
+  height: 300px;
+  top: -80px;
+  left: 50%;
+  margin-left: -675px;
+  background: url("../img/shortcutBg.png") no-repeat 0px 0px;
+  z-index: 1000;
+  -moz-transition: top 0.25s linear;
+  -webkit-transition: top 0.25s linear;
+  -o-transition: top 0.25s linear;
+  transition: top 0.25s linear;
+}
+body div.shortcut div.toggleBtn {
+  display: inline-block;
+  width: 80px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  margin-left: -40px;
+  z-index: 1001;
+  cursor: pointer;
+  background: url("../img/shortcutBg.png") no-repeat 0px -300px;
+}
+body div.shortcut.hid {
+  top: -252px;
+}
+body div.shortcut.hid div.toggleBtn {
+  background: url("../img/shortcutBg.png") no-repeat -80px -300px;
 }
