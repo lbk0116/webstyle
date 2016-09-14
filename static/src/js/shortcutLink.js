@@ -29,20 +29,53 @@
             name: "合同",
             positionX: -438,
             positionY: -79,
-            linkUrl: "/web?#page=0&amp;limit=80&amp;view_type=list&amp;model=nantian_erp.contract&amp;menu_id=738&amp;action=1085"
+            linkUrl: "web?#page=0&amp;limit=80&amp;view_type=list&amp;model=nantian_erp.contract&amp;menu_id=738&amp;action=1085"
         }
     };
-    var selfShortcutList=["1","2"];
-    function startPrint(arr,sl) {
+    var selfShortcutList=["1","2","1","2"];
+    function startPrint(tarSelector,arr,sl) {
+        $(tarSelector).html("");
         $.each(arr,function (ietm,val) {
             var $li=$('<li>'
-                +'<a href="'+sl[val].linkUrl+'">'+
+                +'<a data-href="'+sl[val].linkUrl+'">'+
                     '<i class="icon_cygn" style="background-position: '+sl[val].positionX+'px '+sl[val].positionY+'px"></i>'+
                     '<p>'+sl[val].name+'</p>'+
+                    '<s></s>'+
                 '</a>'
              +'</li>');
-            $("#setCYGN1").append($li);
+            $(tarSelector).append($li);
+        });
+        $("#setCYGN1>li>a").click(function (e) {
+            var e=e||event;
+            e.preventDefault();
+            var url=$(this).attr("data-href");
+            window.open(url,"_self");
+            $("body").scrollTop(300);
         });
     }
-    startPrint(selfShortcutList,shortcutList);
+    startPrint("#setCYGN1",selfShortcutList,shortcutList);
+    $("div.shortcut span.selfSet").click(function () {
+        var $discover=$('<div class="discover"></div>');
+        $('body').css("overflow","hidden").append($discover);
+        var $dialog=$('<div class="modal" style="display: block" data-backdrop="static">'+
+            '<div class="modal-dialog" style="width:740px">'+
+                '<div class="modal-content">'+
+                    '<div class="modal-header">'+
+                        '<h4 class="modal-title">定制常用功能</h4>'+
+                    '</div>'+
+                    '<div class="modal-body">'+
+                        '<p>您已选中的热门功能：</p>'+
+                        '<ul id="selectedShortcut"></ul>'+
+                        '<p>可选择的热门功能：</p>'+
+                        '<ul id="unselectedShortcut"></ul>'+
+                    '</div>'+
+                    '<div class="modal-footer" style="text-align: right">'+
+                        '<button type="button" class="btn btn-info">保存</button>'+
+                        '<button type="button" class="btn btn-warning">退出</button> '+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</div>');
+        $('body').append($dialog);
+    });
 })();
