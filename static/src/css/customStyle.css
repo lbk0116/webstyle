@@ -384,6 +384,7 @@ body div.shortcut {
   top: -80px;
   left: 50%;
   margin-left: -675px;
+  padding: 140px 0 20px;
   background: url("../img/shortcutBg.png") no-repeat 0px 0px;
   z-index: 1000;
   -moz-transition: top 0.25s linear;
@@ -402,6 +403,17 @@ body div.shortcut div.toggleBtn {
   z-index: 1001;
   cursor: pointer;
   background: url("../img/shortcutBg.png") no-repeat 0px -300px;
+}
+body div.shortcut div.item {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 10px 12px;
+  border-radius: 4px;
+  width: 740px;
+  height: 125px;
+  left: 50%;
+  margin-left: -370px;
+  font-size: 14px;
+  position: relative;
 }
 body div.shortcut.hid {
   top: -252px;

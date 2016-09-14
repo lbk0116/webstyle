@@ -659,26 +659,3 @@ $(document).ready(function () {
         },300);
     }
 });
-
-//添加快捷链接
-$(document).ready(function () {
-    var title=$("title").html();
-    if(title.indexOf("Nantian")>=0){
-        $("body").addClass("bg");
-        var $shortcut=$("<div class='shortcut'><div class='toggleBtn'></div></div>");
-        $shortcut.find("div.toggleBtn").click(function () {
-            var divClass=$(this).parent().attr("class");
-            if(divClass.indexOf("hid")>=0){
-                $(this).parent().removeClass("hid");
-                $("body>div.openerp_webclient_container").addClass("showShortcut");
-                $("body").addClass("bg");
-            }else{
-                $(this).parent().addClass("hid");
-                $("body>div.openerp_webclient_container").removeClass("showShortcut");
-                $("body").removeClass("bg");
-            }
-        });
-        $("body>div.openerp_webclient_container").addClass("showShortcut");
-        $("body").append($shortcut);
-    }
-});

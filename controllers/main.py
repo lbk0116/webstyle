@@ -7,3 +7,7 @@ class WebStyle(http.Controller):
     @http.route("/web", auth="none", web=True)
     def webstyle(self):
         return http.request.render("webstyle.idname", {})
+
+    @http.route("/web/", auth="none", web=True)
+    def webstyle(self):
+        return http.request.render("webstyle.shortcut", {})
