@@ -419,16 +419,17 @@ body{
         transition: margin-top 0.25s linear;
     }
     div.openerp_webclient_container.showShortcut{
-        margin-top: 176px;
+        margin-top: 196px;
     }
     div.shortcut{
+        font: 14px/1.5 '微软雅黑',Arial,Helvetica,Tahoma,sans-serif;
         position: absolute;
         width: 1350px;
         height:300px;
-        top: -80px;
+        top: -60px;
         left: 50%;
         margin-left: -675px;
-        padding: 140px 0 20px;
+        padding: 130px 0 20px;
         background:url("../img/shortcutBg.png") no-repeat 0px 0px;
         z-index: 1000;
         -moz-transition: top 0.25s linear;
@@ -450,11 +451,57 @@ body{
             padding: 10px 12px;
             border-radius: 4px;
             width: 740px;
-            height: 125px;
+            height: 145px;
             left: 50%;
             margin-left: -370px;
             font-size: 14px;
             position: relative;
+            color: #fff;
+            h2{
+                font-size: 16px;
+                margin: 0px;
+                padding: 0px;
+                font-weight: bold;
+            }
+            span.selfSet{
+                display: block;
+                width: 54px;
+                height: 26px;
+                line-height: 26px;
+                text-align: center;
+                cursor: pointer;
+                background-color: rgba(255,255,255,0.3);
+                border-radius: 4px;
+                position: absolute;
+                right: 15px;
+                top: 10px;
+                font-size: 14px;
+            }
+            ul{
+                width: 720px;
+                margin-left: -30px;
+                margin-top: 10px;
+                list-style-type: none;
+                li{
+                    float: left;
+                    width: 120px;
+                    text-align: center;
+                    a{
+                        color: #fff;
+                        text-decoration: none;
+                        margin: 0;
+                        padding: 0;
+                        &:hover{
+                            color: #1dd9e2;
+                        }
+                        i.icon_cygn{
+                            display: inline-block;
+                            width: 66px;height: 66px;
+                            background: url("../img/iconlist.png") no-repeat -293px -78px;
+                        }
+                    }
+                }
+            }
         }
     }
     div.shortcut.hid{
