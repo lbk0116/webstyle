@@ -54,7 +54,7 @@
         "4": {
             name: "工作组",
             positionX: -75,
-            positionY: -147,
+            positionY: -148,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=project.project&action=1083"
         },
         "5": {
@@ -66,13 +66,13 @@
         "6": {
             name: "服务客户",
             positionX: -435,
-            positionY: -2,
+            positionY: -3,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=res.partner&action=1084"
         },
         "7": {
             name: "待处理Case",
             positionX: -435,
-            positionY: -147,
+            positionY: -148,
             linkUrl: "web?#page=0&limit=&view_type=list&model=server_desk.case&action=774"
         },
         "8": {
@@ -84,7 +84,7 @@
         "9": {
             name: "我的仪表盘",
             positionX: -218,
-            positionY: -2,
+            positionY: -3,
             linkUrl: "web?#view_type=form&model=board.board&action=87"
         }
     };

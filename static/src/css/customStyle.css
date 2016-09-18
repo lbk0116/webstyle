@@ -462,7 +462,7 @@ body div.shortcut div.item ul li a i.icon_cygn {
   display: inline-block;
   width: 71px;
   height: 71px;
-  background: url("../img/iconlist.png") no-repeat -291px -76px;
+  background: url("../img/iconlist1.png") no-repeat -291px -76px;
 }
 body div.shortcut.hid {
   top: -252px;
@@ -498,7 +498,7 @@ body #dialogLink div.modal-body ul li a i.icon_cygn {
   display: inline-block;
   width: 71px;
   height: 71px;
-  background: url("../img/iconlist.png") no-repeat -291px -76px;
+  background: url("../img/iconlist1.png") no-repeat -291px -76px;
 }
 body #dialogLink div.modal-body ul li a s {
   display: inline-block;
@@ -507,7 +507,7 @@ body #dialogLink div.modal-body ul li a s {
   right: 12px;
   width: 17px;
   height: 17px;
-  background: url("../img/iconlist.png") no-repeat -51px -38px;
+  background: url("../img/iconlist1.png") no-repeat -51px -38px;
 }
 body #dialogLink div.modal-body #selectedShortcut {
   height: 115px;
