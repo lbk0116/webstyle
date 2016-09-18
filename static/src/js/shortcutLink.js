@@ -35,56 +35,56 @@
     var shortcutList= {
         "1": {
             name: "人力资源",
-            positionX: -293,
-            positionY: -78,
+            positionX: -291,
+            positionY: -76,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=hr.employee&menu_id=189&action=205"
         },
         "2": {
             name: "合同",
-            positionX: -438,
-            positionY: -79,
+            positionX: -435,
+            positionY: -76,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=nantian_erp.contract&menu_id=738&action=1085"
         },
         "3": {
             name: "请假申请",
-            positionX: -149,
-            positionY: -149,
+            positionX: -147,
+            positionY: -147,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=nantian_erp.hr_leave&menu_id=733&action=1076"
         },
         "4": {
             name: "工作组",
-            positionX: -77,
-            positionY: -149,
+            positionX: -75,
+            positionY: -147,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=project.project&action=1083"
         },
         "5": {
             name: "任务",
-            positionX: -149,
-            positionY: -149,
+            positionX: -147,
+            positionY: -147,
             linkUrl: "web?#view_type=kanban&model=project.task&action=192"
         },
         "6": {
             name: "服务客户",
-            positionX: -437,
-            positionY: -4,
+            positionX: -435,
+            positionY: -2,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=res.partner&action=1084"
         },
         "7": {
             name: "待处理Case",
-            positionX: -437,
-            positionY: -149,
+            positionX: -435,
+            positionY: -147,
             linkUrl: "web?#page=0&limit=&view_type=list&model=server_desk.case&action=774"
         },
         "8": {
             name: "收件箱",
-            positionX: -5,
-            positionY: -150,
+            positionX: -3,
+            positionY: -148,
             linkUrl: "web?#menu_id=105&action=98"
         },
         "9": {
             name: "我的仪表盘",
-            positionX: -220,
-            positionY: -4,
+            positionX: -218,
+            positionY: -2,
             linkUrl: "web?#view_type=form&model=board.board&action=87"
         }
     };

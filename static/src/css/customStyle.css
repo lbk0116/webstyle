@@ -386,7 +386,7 @@ body div.shortcut {
   left: 50%;
   margin-left: -675px;
   padding: 130px 0 20px;
-  background: url("../img/shortcutBg.png") no-repeat 0px 0px;
+  background: url("../img/shortcutBg1.png") no-repeat 0px 0px;
   z-index: 1000;
   -moz-transition: top 0.25s linear;
   -webkit-transition: top 0.25s linear;
@@ -403,7 +403,7 @@ body div.shortcut div.toggleBtn {
   margin-left: -40px;
   z-index: 1001;
   cursor: pointer;
-  background: url("../img/shortcutBg.png") no-repeat 0px -300px;
+  background: url("../img/shortcutBg1.png") no-repeat 0px -300px;
 }
 body div.shortcut div.item {
   background-color: rgba(255, 255, 255, 0.3);
@@ -460,22 +460,22 @@ body div.shortcut div.item ul li a:hover {
 }
 body div.shortcut div.item ul li a i.icon_cygn {
   display: inline-block;
-  width: 66px;
-  height: 66px;
-  background: url("../img/iconlist.png") no-repeat -293px -78px;
+  width: 71px;
+  height: 71px;
+  background: url("../img/iconlist.png") no-repeat -291px -76px;
 }
 body div.shortcut.hid {
   top: -252px;
 }
 body div.shortcut.hid div.toggleBtn {
-  background: url("../img/shortcutBg.png") no-repeat -80px -300px;
+  background: url("../img/shortcutBg1.png") no-repeat -80px -300px;
 }
 body #dialogLink div.modal-body ul {
   width: 708px;
   margin-top: 10px;
   padding: 14px 0px 0px;
   overflow: hidden;
-  background-color: #ddd;
+  background-color: #5BC0DE;
   list-style-type: none;
 }
 body #dialogLink div.modal-body ul li {
@@ -496,25 +496,25 @@ body #dialogLink div.modal-body ul li a:hover {
 }
 body #dialogLink div.modal-body ul li a i.icon_cygn {
   display: inline-block;
-  width: 66px;
-  height: 66px;
-  background: url("../img/iconlist.png") no-repeat -293px -78px;
+  width: 71px;
+  height: 71px;
+  background: url("../img/iconlist.png") no-repeat -291px -76px;
 }
 body #dialogLink div.modal-body ul li a s {
   display: inline-block;
   position: absolute;
   top: -4px;
   right: 12px;
-  width: 15px;
-  height: 15px;
-  background: url("../img/iconlist.png") no-repeat -52px -39px;
+  width: 17px;
+  height: 17px;
+  background: url("../img/iconlist.png") no-repeat -51px -38px;
 }
 body #dialogLink div.modal-body #selectedShortcut {
   height: 115px;
 }
 body #dialogLink div.modal-body #unselectedShortcut {
-  background-color: #fff;
+  background-color: #ddd;
 }
 body #dialogLink div.modal-body #unselectedShortcut li a s {
-  background-position: -52px -19px;
+  background-position: -51px -18px;
 }
