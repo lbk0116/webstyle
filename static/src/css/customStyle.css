@@ -470,3 +470,51 @@ body div.shortcut.hid {
 body div.shortcut.hid div.toggleBtn {
   background: url("../img/shortcutBg.png") no-repeat -80px -300px;
 }
+body #dialogLink div.modal-body ul {
+  width: 708px;
+  margin-top: 10px;
+  padding: 14px 0px 0px;
+  overflow: hidden;
+  background-color: #ddd;
+  list-style-type: none;
+}
+body #dialogLink div.modal-body ul li {
+  float: left;
+  width: 110px;
+  text-align: center;
+  position: relative;
+}
+body #dialogLink div.modal-body ul li a {
+  color: #636363;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+body #dialogLink div.modal-body ul li a:hover {
+  color: #1dd9e2;
+}
+body #dialogLink div.modal-body ul li a i.icon_cygn {
+  display: inline-block;
+  width: 66px;
+  height: 66px;
+  background: url("../img/iconlist.png") no-repeat -293px -78px;
+}
+body #dialogLink div.modal-body ul li a s {
+  display: inline-block;
+  position: absolute;
+  top: -4px;
+  right: 12px;
+  width: 15px;
+  height: 15px;
+  background: url("../img/iconlist.png") no-repeat -52px -39px;
+}
+body #dialogLink div.modal-body #selectedShortcut {
+  height: 115px;
+}
+body #dialogLink div.modal-body #unselectedShortcut {
+  background-color: #fff;
+}
+body #dialogLink div.modal-body #unselectedShortcut li a s {
+  background-position: -52px -19px;
+}
