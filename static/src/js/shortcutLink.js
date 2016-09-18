@@ -80,6 +80,12 @@
             positionX: -5,
             positionY: -150,
             linkUrl: "web?#menu_id=105&action=98"
+        },
+        "9": {
+            name: "我的仪表盘",
+            positionX: -220,
+            positionY: -4,
+            linkUrl: "web?#view_type=form&model=board.board&action=87"
         }
     };
     //初始化快捷链接
@@ -87,7 +93,7 @@
         shortcut.selectedList=["1","5"];
     }
     if(!shortcut.unselectedList){
-        shortcut.unselectedList=["2","3","4","6","7","8"];
+        shortcut.unselectedList=["2","3","4","6","7","8","9"];
     }
 
     //dom操作函数
