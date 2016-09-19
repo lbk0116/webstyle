@@ -485,14 +485,14 @@ body #dialogLink div.modal-body ul li {
   position: relative;
 }
 body #dialogLink div.modal-body ul li a {
-  color: #636363;
+  color: #333;
   text-decoration: none;
   margin: 0;
   padding: 0;
   cursor: pointer;
 }
 body #dialogLink div.modal-body ul li a:hover {
-  color: #1dd9e2;
+  color: #fff;
 }
 body #dialogLink div.modal-body ul li a i.icon_cygn {
   display: inline-block;

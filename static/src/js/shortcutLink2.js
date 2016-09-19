@@ -35,56 +35,65 @@
     var shortcutList= {
         "1": {
             name: "人力资源",
+            menuName:"员工",
             positionX: -291,
             positionY: -76,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=hr.employee&menu_id=189&action=205"
         },
         "2": {
             name: "合同",
+            menuName:"合同",
             positionX: -435,
             positionY: -76,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=nantian_erp.contract&menu_id=738&action=1085"
         },
         "3": {
             name: "请假申请",
+            menuName:"申请创建",
             positionX: -147,
             positionY: -147,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=nantian_erp.hr_leave&menu_id=733&action=1076"
         },
         "4": {
             name: "工作组",
+            menuName:"工作组",
             positionX: -75,
-            positionY: -148,
+            positionY: -147,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=project.project&action=1083"
         },
         "5": {
             name: "任务",
+            menuName:"任务",
             positionX: -147,
             positionY: -147,
             linkUrl: "web?#view_type=kanban&model=project.task&action=192"
         },
         "6": {
             name: "服务客户",
+            menuName:"服务客户",
             positionX: -435,
-            positionY: -3,
+            positionY: -2,
             linkUrl: "web?#page=0&limit=80&view_type=list&model=res.partner&action=1084"
         },
         "7": {
             name: "待处理Case",
+            menuName:"待处理",
             positionX: -435,
-            positionY: -148,
+            positionY: -147,
             linkUrl: "web?#page=0&limit=&view_type=list&model=server_desk.case&action=774"
         },
         "8": {
             name: "收件箱",
+            menuName:"收件箱",
             positionX: -3,
             positionY: -148,
             linkUrl: "web?#menu_id=105&action=98"
         },
         "9": {
-            name: "我的仪表盘",
+            name: "我的仪表板",
+            menuName:"我的仪表板",
             positionX: -218,
-            positionY: -3,
+            positionY: -2,
             linkUrl: "web?#view_type=form&model=board.board&action=87"
         }
     };
@@ -95,6 +104,11 @@
     if(!shortcut.unselectedList){
         shortcut.unselectedList=["2","3","4","6","7","8","9"];
     }
+    //获取菜单权限
+    var authority={};
+    $("td.oe_leftbar span.oe_menu_text").each(function (i,v) {
+        authority[$(v).html().trim()]=true;
+    });
 
     //dom操作函数
     function startPrint(tarSelector,arr,sl) {
@@ -127,23 +141,28 @@
                     var i=shortcut.selectedList.indexOf(val);
                     var del=shortcut.selectedList.splice(i,1);
                     Array.prototype.push.apply(shortcut.unselectedList,del);
-                    startPrint("#selectedShortcut",shortcut.selectedList,shortcutList);
-                    startPrint("#unselectedShortcut",shortcut.unselectedList,shortcutList);
+                    startPrint("#selectedShortcut",shortcut.selectedList,sl);
+                    startPrint("#unselectedShortcut",shortcut.unselectedList,sl);
                 });
             break;
             case "#unselectedShortcut":
                 $("#unselectedShortcut>li>a").click(function () {
                     var e=e||event;
                     e.preventDefault();
-                    if(shortcut.selectedList.length<6){
-                        var val=$(this).attr("href");
-                        var i=shortcut.unselectedList.indexOf(val);
-                        var del=shortcut.unselectedList.splice(i,1);
-                        Array.prototype.push.apply(shortcut.selectedList,del);
-                        startPrint("#selectedShortcut",shortcut.selectedList,shortcutList);
-                        startPrint("#unselectedShortcut",shortcut.unselectedList,shortcutList);
+                    var val=$(this).attr("href");
+                    var a=authority[sl[val].menuName];
+                    if(a){
+                        if(shortcut.selectedList.length<6){
+                            var i=shortcut.unselectedList.indexOf(val);
+                            var del=shortcut.unselectedList.splice(i,1);
+                            Array.prototype.push.apply(shortcut.selectedList,del);
+                            startPrint("#selectedShortcut",shortcut.selectedList,sl);
+                            startPrint("#unselectedShortcut",shortcut.unselectedList,sl);
+                        }else{
+                            alert("您选中的热门功能已经达到最大上限！");
+                        }
                     }else{
-                        alert("您选中的热门功能已经达到最大上限！");
+                        alert("您要选的热门功能无访问权限！");
                     }
                 });
             break;
