@@ -114,14 +114,22 @@
     function startPrint(tarSelector,arr,sl) {
         $(tarSelector).html("");
         $.each(arr,function (ietm,val) {
-            var $li=$('<li>'
-                +'<a data-href="'+sl[val].linkUrl+'" href="'+val+'">'+
-                    '<i class="icon_cygn" style="background-position: '+sl[val].positionX+'px '+sl[val].positionY+'px"></i>'+
-                    '<p>'+sl[val].name+'</p>'+
-                    '<s></s>'+
-                '</a>'
-             +'</li>');
-            $(tarSelector).append($li);
+            var a=authority[sl[val].menuName];
+            function print() {
+                var $li = $('<li>'
+                    + '<a data-href="' + sl[val].linkUrl + '" href="' + val + '">' +
+                    '<i class="icon_cygn" style="background-position: ' + sl[val].positionX + 'px ' + sl[val].positionY + 'px"></i>' +
+                    '<p>' + sl[val].name + '</p>' +
+                    '<s></s>' +
+                    '</a>'
+                    + '</li>');
+                $(tarSelector).append($li);
+            }
+            if(tarSelector=="#setCYGN1") {
+                a&&print();
+            }else{
+                print();
+            }
         });
         switch(tarSelector){
             case "#setCYGN1":
