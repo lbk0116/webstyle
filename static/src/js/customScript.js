@@ -224,7 +224,12 @@ $(document).ready(function () {
          }
          $("div.col-md-12>ul>li>a").click(function(e){
              var e=e||event;
-             e.preventDefault();
+             if (e.preventDefault){
+				e.preventDefault(); 
+				//IE中阻止函数器默认动作的方式
+			 }else{
+				e.returnValue = false;
+			 }
              var tag=$(this).parents("ul[data-tag]").attr("data-tag");
              var value=$(this).attr("href");
              var liActive=$(this).parent().attr("class");
@@ -243,7 +248,7 @@ $(document).ready(function () {
                  indexObj[tag].push(value);
              }
              // console.log(JSON.stringify(indexObj));
-            refreshData(indexObj,tag);
+             refreshData(indexObj,tag);
 
          });
          $("div.oe_searchview_clear").click(function () {
@@ -324,7 +329,12 @@ $(document).ready(function(){
         $('body').append($dialog);
         $dialog.find("div.modal-body a").click(function (e) {
            var e=e||event;
-           e.preventDefault();
+           if (e.preventDefault){
+				e.preventDefault(); 
+				//IE中阻止函数器默认动作的方式
+			}else{
+				e.returnValue = false;
+			}
            statr();
        });
        $dialog.find("div.modal-footer>.btn-info").click(dismiss);

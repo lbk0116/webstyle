@@ -135,7 +135,12 @@
             case "#setCYGN1":
                 $("#setCYGN1>li>a").click(function (e) {
                     var e=e||event;
-                    e.preventDefault();
+                    if (e.preventDefault){
+						e.preventDefault(); 
+						//IE中阻止函数器默认动作的方式
+					}else{
+						e.returnValue = false;
+					}
                     var url=$(this).attr("data-href");
                     window.open(url,"_self");
                     $("body").scrollTop(300);
@@ -144,7 +149,12 @@
             case "#selectedShortcut":
                 $("#selectedShortcut>li>a").click(function () {
                     var e=e||event;
-                    e.preventDefault();
+                    if (e.preventDefault){
+						e.preventDefault(); 
+						//IE中阻止函数器默认动作的方式
+					}else{
+						e.returnValue = false;
+					}
                     var val=$(this).attr("href");
                     var i=shortcut.selectedList.indexOf(val);
                     var del=shortcut.selectedList.splice(i,1);
@@ -156,7 +166,12 @@
             case "#unselectedShortcut":
                 $("#unselectedShortcut>li>a").click(function () {
                     var e=e||event;
-                    e.preventDefault();
+                    if (e.preventDefault){
+						e.preventDefault(); 
+						//IE中阻止函数器默认动作的方式
+					}else{
+						e.returnValue = false;
+					}
                     var val=$(this).attr("href");
                     var a=authority[sl[val].menuName];
                     if(a){
