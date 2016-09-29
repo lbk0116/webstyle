@@ -547,6 +547,15 @@ $(document).ready(function () {
         var text=$(this).html().trim();
         if(text==="处理过程与客户反馈"&&!isEditing){
             $('table.oe_list_content td').on("click",addTdClickEvent);
+            //防止表格溢出样式代码
+            $(this).parents(".ui-widget-content.oe_clear").
+                find("table.oe_list_content").css("tableLayout","fixed").
+                find("td,th").css({
+                    "overflow": "hidden",
+                    "text-overflow": "ellipsis",
+                    "white-space": "nowrap"
+                }
+            );
         }
     });
     $("body").on("click",".oe_form_buttons_view button.oe_form_button_edit",function () {

@@ -330,18 +330,6 @@ body .tipSelf i {
   transform: rotateZ(45deg);
   background-color: #222;
 }
-body div.openerp_webclient_container div.oe_notebook_page > div.oe_form_field.oe_form_field_one2many {
-  overflow: auto;
-}
-body div.openerp_webclient_container div.oe_notebook_page > div.oe_form_field.oe_form_field_one2many table.oe_list_content {
-  table-layout: fixed;
-}
-body div.openerp_webclient_container div.oe_notebook_page > div.oe_form_field.oe_form_field_one2many table.oe_list_content tbody tr td,
-body div.openerp_webclient_container div.oe_notebook_page > div.oe_form_field.oe_form_field_one2many table.oe_list_content tbody tr th {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 body #wrapwrap main {
   background-color: #4575C7;
 }
