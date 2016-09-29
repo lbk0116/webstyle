@@ -164,7 +164,7 @@ $(document).ready(function () {
          function refreshData(obj,t) {
              //开始先删除相关的已选择的选项标签
              var tag={level:"Level",
-                 certificate_institutions_id:"证书颁发机构或行业",
+                 certificate_institutions_id:"certificate_institutions",
                  category:"人员状态",
                  project_id:"Project",
                  work_age:"Work age"};
