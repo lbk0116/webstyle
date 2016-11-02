@@ -317,7 +317,7 @@ $(document).ready(function(){
                         '<h4 class="modal-title">温馨提醒:</h4>'+
                     '</div>'+
                     '<div class="modal-body">'+
-                        '<p>感谢您使用我们的系统，如果您是第一次登陆，可点击 <a href="#">此处使用向导</a>来帮助您完成操作，如果是已经知道如何操作，点击我知道了按钮退出向导！</p>'+
+                        '<p>感谢您使用我们的系统，如果您是第一次登陆，<a class="settings" href="#">点击修改密码</a>或者<a class="guide" href="#">点击此处</a>使用向导来帮助您完成基本操作，如果是已经知道如何操作，点击我知道了按钮退出向导！</p>'+
                     '</div>'+
                     '<div class="modal-footer" style="text-align: right">'+
                         '<button type="button" class="btn btn-info">以后再说！</button>'+
@@ -327,7 +327,27 @@ $(document).ready(function(){
             '</div>'+
         '</div>');
         $('body').append($dialog);
-        $dialog.find("div.modal-body a").click(function (e) {
+        //调用修改密码窗口
+        $dialog.find("div.modal-body a.settings").click(function(){
+            var e=e||event;
+            if (e.preventDefault){
+                e.preventDefault();
+                //IE中阻止函数器默认动作的方式
+            }else{
+                e.returnValue = false;
+            }
+            openerp.client.user_menu.on_menu_settings();
+            //$(".modal-body .oe_link").trigger("click");
+            var timer=setInterval(function(){
+                if($(".modal-body button.oe_button.oe_form_button.oe_link").length){
+                    clearInterval(timer);
+                    $(".modal-body .oe_link").trigger("click");
+                    console.log($(".modal-body .oe_link"))
+                }
+            },100);
+
+        });
+        $dialog.find("div.modal-body a.guide").click(function (e) {
            var e=e||event;
            if (e.preventDefault){
 				e.preventDefault(); 
@@ -383,7 +403,7 @@ $(document).ready(function(){
             {x:0,y:0,needTrigger:true,needScroll:["",0],tar:"table.oe_list_content tr[data-id]:first",html:"点击此处 查看个人和团队信息!",imgDir:false},
             {x:0,y:0,needTrigger:true,needScroll:["",0],tar:".oe_view_manager_buttons button.oe_form_button_edit",html:"点击此处 编辑个人信息!",imgDir:false},
             {x:0,y:0,needTrigger:true,needScroll:["div.oe_view_manager_body:first",200],tar:"ul.oe_notebook>li:nth-child(2)>a.ui-tabs-anchor",html:"点击此处 编辑团队信息!",imgDir:false},
-            {x:0,y:0,needTrigger:false,needScroll:["div.oe_view_manager_body:first",600],tar:".oe_form_label:eq(26)",html:"点击此处 编辑工作组归属!",imgDir:false},
+            {x:0,y:0,needTrigger:false,needScroll:["div.oe_view_manager_body:first",600],tar:".oe_form_label:eq(29)",html:"点击此处 编辑工作组归属!",imgDir:false},
             null,
             null,
         ];
