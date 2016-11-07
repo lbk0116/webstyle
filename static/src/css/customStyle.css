@@ -368,13 +368,13 @@ body div.openerp_webclient_container.showShortcut {
 body div.shortcut {
   font: 14px/1.5 Helvetica, Arial, Helvetica, Tahoma, sans-serif;
   position: absolute;
-  width: 1350px;
+  width: 98%;
   height: 300px;
   top: -60px;
   left: 50%;
-  margin-left: -675px;
+  margin-left: -49%;
   padding: 130px 0 20px;
-  background: url("../img/shortcutBg1.png") no-repeat 0px 0px;
+  background: url("../img/shortcutBg1.png") 0px 0px;
   z-index: 1000;
   -moz-transition: top 0.25s linear;
   -webkit-transition: top 0.25s linear;
