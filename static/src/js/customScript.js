@@ -119,37 +119,6 @@ $(document).ready(function () {
     });
 });
 
-//人力资源添加默认字段搜索
- /*$(document).ready(function(){
-     var n=0;
-     function boot(){
-         n++;
-         if(n>200){return;}
-         var stra=$("li.active>a.oe_menu_toggler>span.oe_menu_text").html();
-         if(stra){
-             stra=stra.trim();
-             if(stra==="人力资源"){
-                addSearchKey();
-             }
-         }else{
-             setTimeout(boot,500);
-         }
-     }
-     setTimeout(boot,500);
-     $(".oe_menu_toggler").click(function (){
-         var strb=$(this).children("span.oe_menu_text").html().trim();
-         if(strb==="人力资源"){
-             setTimeout(boot,500);
-         }
-     });
-     $("body").on("click","ul.oe_secondary_submenu>li",function () {
-         var tarText=$(this).find("a>span.oe_menu_text").html().trim();
-         if(tarText=="员工"){
-            setTimeout(boot,500);
-         }
-     });
- });*/
-
 //滚动时固定表头
 $(document).ready(function () {
     fixTableHead.init();
