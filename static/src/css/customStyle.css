@@ -464,3 +464,6 @@ body #dialogLink div.modal-body #unselectedShortcut {
 body #dialogLink div.modal-body #unselectedShortcut li a s {
   background-position: -51px -18px;
 }
+body .oe_view_manager_body .oe_list_header_columns th[data-id=case_oem_no] {
+  width: 170px;
+}
